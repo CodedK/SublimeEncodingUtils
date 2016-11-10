@@ -1,6 +1,6 @@
 {
   "name": "EncodingUtils",
-  "description": "Converts characters from one "encoding" to another.",
+  "description": "Converts characters from one encoding to another.",
   "author": "Panos CodedK",
   "details": "https://github.com/CodedK/SublimeEncodingUtils",
   "labels": ["text manipulation"],
