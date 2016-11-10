@@ -1,0 +1,17 @@
+{
+  "name": "EncodingUtils",
+  "description": "Converts characters from one "encoding" to another.",
+  "author": "Panos CodedK",
+  "details": "https://github.com/CodedK/SublimeEncodingUtils",
+  "labels": ["text manipulation"],
+  "releases": [
+    {
+      "details": "https://github.com/CodedK/SublimeEncodingUtils/tree/master",
+      "sublime_text": "<3000"
+    },
+    {
+      "details": "https://github.com/CodedK/SublimeEncodingUtils/tags",
+      "sublime_text": ">=3000"
+    }
+  ]
+}

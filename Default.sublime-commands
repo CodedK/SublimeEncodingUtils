@@ -1,0 +1,106 @@
+[
+    {
+        "caption": "EncodingUtils: Paste Encoded...",
+        "command": "string_encode_paste"
+    },
+    {
+        "caption": "EncodingUtils: NCR Encode",
+        "command": "panos_ncr"
+    },
+    {
+        "caption": "EncodingUtils: NCR Decode",
+        "command": "dencr"
+    },
+    {
+        "caption": "EncodingUtils: HTML Entitize",
+        "command": "html_entitize"
+    },
+    {
+        "caption": "EncodingUtils: HTML Deentitize",
+        "command": "html_deentitize"
+    },
+    {
+        "caption": "EncodingUtils: CSS Escape",
+        "command": "css_escape"
+    },
+    {
+        "caption": "EncodingUtils: CSS Unescape",
+        "command": "css_unescape"
+    },
+    {
+        "caption": "EncodingUtils: XML Entitize",
+        "command": "xml_entitize"
+    },
+    {
+        "caption": "EncodingUtils: XML Deentitize",
+        "command": "xml_deentitize"
+    },
+    {
+        "caption": "EncodingUtils: Safe HTML Entitize",
+        "command": "safe_html_entitize"
+    },
+    {
+        "caption": "EncodingUtils: Safe HTML Deentitize",
+        "command": "safe_html_deentitize"
+    },
+    {
+        "caption": "EncodingUtils: JSON Escape",
+        "command": "json_escape"
+    },
+    {
+        "caption": "EncodingUtils: JSON Unescape",
+        "command": "json_unescape"
+    },
+    {
+        "caption": "EncodingUtils: URL Encode",
+        "command": "url_encode"
+    },
+    {
+        "caption": "EncodingUtils: URL Decode",
+        "command": "url_decode"
+    },
+    {
+        "caption": "MD5",
+        "command": "md5_encode"
+    },
+    {
+        "caption": "Sha256",
+        "command": "sha256_encode"
+    },
+    {
+        "caption": "Sha512",
+        "command": "sha512_encode"
+    },
+    {
+        "caption": "EncodingUtils: Base64 Encode",
+        "command": "base64_encode"
+    },
+    {
+        "caption": "EncodingUtils: Base64 Decode",
+        "command": "base64_decode"
+    },
+    {
+        "caption": "EncodingUtils: Escape regex",
+        "command": "escape_regex"
+    },
+    {
+        "caption": "EncodingUtils: Escape LIKE",
+        "command": "escape_like"
+    },
+    {
+        "caption": "EncodingUtils: Decimal to Hexadecimal",
+        "command": "dec_hex"
+    },
+    {
+        "caption": "EncodingUtils: Hexadecimal to Decimal",
+        "command": "hex_dec"
+    },
+    {
+        "caption": "EncodingUtils: Unicode to Hexadecimal",
+        "command": "unicode_hex"
+    },
+    {
+        "caption": "EncodingUtils: Hexadecimal to Unicode",
+        "command": "hex_unicode"
+    }
+]
