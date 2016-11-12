@@ -7,6 +7,9 @@ import codecs
 import sys
 import sublime
 import sublime_plugin
+import math
+import string
+import fileinput
 
 try:
     from .encodingutils.escape_table import (
