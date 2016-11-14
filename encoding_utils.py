@@ -1,15 +1,16 @@
 # coding: utf8
 import base64
-import re
-import json
-import hashlib
 import codecs
-import sys
-import sublime
-import sublime_plugin
+import hashlib
+import json
 import math
+import re
 import string
-import fileinput
+import sys
+
+import sublime
+
+import sublime_plugin
 
 try:
     from .encodingutils.escape_table import (
@@ -116,12 +117,31 @@ class StringEncode(sublime_plugin.TextCommand):
             replacement = self.encode(text, **kwargs)
             self.view.replace(edit, region, replacement)
 
+class ShannonCommand(StringEncode):
+    def encode(self, text):        
+        def range_bytes (): return range(256)
+        def range_printable(): return (ord(c) for c in string.printable)
+        def h(data, iterator=range_bytes):
+            if not data:
+                return 0
+            entropy = 0
+            for x in iterator():
+                p_x = float(data.count(chr(x)))/len(data)
+                if p_x > 0:
+                    entropy += - p_x*math.log(p_x, 2)
+            return entropy
+        ret = 0
+        ret = h(text, range_printable)
+        return ret
+
+
 class CheckOrdCommand(StringEncode):
     def encode(self, text):
         ret = ''
         for i, c in enumerate(text):
             ret += str(ord(c)) + '.'
         return ret
+
 
 class PanosRotCommand(StringEncode):
     def encode(self, text):
