@@ -131,7 +131,7 @@ class ShannonCommand(StringEncode):
                     entropy += - p_x*math.log(p_x, 2)
             return entropy
         ret = 0
-        ret = h(text, range_printable)
+        ret = str(h(text, range_printable))
         return ret
 
 
