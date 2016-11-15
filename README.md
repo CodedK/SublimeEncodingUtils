@@ -5,9 +5,6 @@ Converts characters from one "encoding" to another
 - Encoding: Base64
 - Hash: Md5, Sha256, Sha512
 - Cipher:ROT13
-
-`---`
-
 - Numeric Code Refence (NCR)
 - Hexadecimal / Decimal
 - Unicode Hexadecimal representation
@@ -16,9 +13,6 @@ Converts characters from one "encoding" to another
 - XML entities
 - URLs
 - JSON format strings
-
-`---`
-
 - Regular Expression escape
 - SQL 'LIKE' escape
 
