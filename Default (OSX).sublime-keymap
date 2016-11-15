@@ -1,0 +1,24 @@
+[
+    {"keys": ["super+0"], "command": "panos_rot"},
+    {"keys": ["super+shift+0"], "command": "shannon"},
+    {"keys": ["super+shift+1"], "command": "unicode_hex"},
+    {"keys": ["super+1"], "command": "hex_unicode"},
+    {"keys": ["super+2"], "command": "md5_encode"},
+    {"keys": ["super+shift+2"], "command": "sha256_encode"},
+    {"keys": ["super+shift+3"], "command": "panos_ncr"},
+    {"keys": ["super+3"], "command": "dencr"},
+    {"keys": ["super+4"], "command": "entropy"},
+    {"keys": ["super+shift+4"], "command": "check_ord"},
+    {"keys": ["super+shift+5"], "command": "url_encode"},
+    // {"keys": ["super+shift+5"], "command": "url_encode", "args": {"old_school": true}},
+    {"keys": ["super+5"], "command": "url_decode"},
+    {"keys": ["super+shift+6"], "command": "base64_encode"},
+    {"keys": ["super+6"], "command": "base64_decode"},
+    {"keys": ["super+shift+7"], "command": "html_entitize"},
+    {"keys": ["super+7"], "command": "html_deentitize"},
+    {"keys": ["super+shift+8"], "command": "json_escape"},
+    {"keys": ["super+8"], "command": "json_unescape"},
+    {"keys": ["super+shift+9"], "command": "encode_html_entities"},
+    {"keys": ["super+shift+h"], "command": "goto_documentation" }
+]
+
