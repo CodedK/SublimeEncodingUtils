@@ -4,14 +4,14 @@ Converts characters from one "encoding" to another
 - Entropy calculation (Shannon)
 - Encoding: Base64
 - Hash: Md5, Sha256, Sha512
-- Cipher:ROT13
+- Cipher: ROT13
 - Numeric Code Refence (NCR)
 - Hexadecimal / Decimal
 - Unicode Hexadecimal representation
 - HTML entities
 - CSS (e.g. unicode characters)
 - XML entities
-- URLs
+- URL encoding
 - JSON format strings
 - Regular Expression escape
 - SQL 'LIKE' escape
