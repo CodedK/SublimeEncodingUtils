@@ -17,6 +17,28 @@
                         "caption": "-"
                     },
                     {
+                        "caption": "Shannon Entropy",
+                        "command": "shannon"
+                    },
+                    {
+                        "caption": "-"
+                    },
+                    {
+                        "caption": "NCR Encode",
+                        "command": "panos_ncr"
+                    },
+                    {
+                        "caption": "NCR Decode",
+                        "command": "dencr"
+                    },
+                    {
+                        "caption": "-"
+                    },
+                    {
+                        "caption": "HTML Entitize",
+                        "command": "html_entitize"
+                    },
+                    {
                         "caption": "HTML Entitize",
                         "command": "html_entitize"
                     },
