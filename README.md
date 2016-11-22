@@ -66,6 +66,8 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 
 `shannon` : Computes Shannon entropy
 
+`strength` : Password strength calculator. Outputs Shannon entropy based on charactrer set used.
+
 `string_encode_paste` : Uses the clipboard as input and converts to the desired encoding
 
 `unicode_hex` : Converts unicode characters to their HEX representation
