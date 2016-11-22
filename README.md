@@ -1,7 +1,8 @@
 # SublimeEncodingUtils
 Converts characters from one "encoding" to another
 
-- Entropy calculation (Shannon)
+- Entropy calculation (Shannon entropy)
+- Password strength calculation
 - Encoding: Base64
 - Hash: Md5, Sha256, Sha512
 - Cipher: ROT13
