@@ -1,8 +1,8 @@
 {
   "name": "EncodingUtils",
-  "description": "Converts characters from one encoding to another.",
-  "author": "Panos CodedK",
-  "version": "1.050",
+  "description": "Converts selected characters from one encoding to another.",
+  "author": "Panos Kalatzantonakis",
+  "version": "1.051",
   "details": "https://github.com/CodedK/SublimeEncodingUtils",
   "labels": ["text manipulation"],
   "releases": [
