@@ -21,6 +21,10 @@
                         "command": "shannon"
                     },
                     {
+                        "caption": "Unix timestamp to datetime",
+                        "command": "unixstamp"
+                    },
+                    {
                         "caption": "-"
                     },
                     {

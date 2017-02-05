@@ -12,6 +12,7 @@ import sublime
 
 import sublime_plugin
 
+
 try:
     from .encodingutils.escape_table import (
         html_escape_table,
@@ -118,6 +119,17 @@ class StringEncode(sublime_plugin.TextCommand):
             replacement = self.encode(text, **kwargs)
             self.view.replace(edit, region, replacement)
 
+
+class UnixstampCommand(StringEncode):
+    def encode(self, text):
+        # from math import log, pow
+        import datetime
+        import time
+        ret = ''
+        zet = ''
+        ret = datetime.datetime.fromtimestamp(int(text)).strftime('%d-%m-%Y %H:%M:%S') # (1284101485) -- 10-09-2010 09:51:25
+        zet = str(time.ctime(int(text))) # (1284101485) -- Fri Sep 10 09:51:25 2010
+        return ret
 
 class ShannonCommand(StringEncode):
     def encode(self, text):
@@ -505,6 +517,7 @@ class HexUnicodeCommand(StringEncode):
                 b4 = int(rr.group(4), 16)
 
             ch = bytes([b1, b2, b3, b4]).decode('utf-16')
+
             uni_text = uni_text.replace(rr.group(0), ch)
             rr = r.search(uni_text)
 

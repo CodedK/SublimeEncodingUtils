@@ -12,6 +12,10 @@
         "command": "dencr"
     },
     {
+        "caption": "Unixstamp: Unix timestamp to datetime",
+        "command": "unixstamp"
+    },
+    {
         "caption": "EncodingUtils: HTML Entitize",
         "command": "html_entitize"
     },

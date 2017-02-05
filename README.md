@@ -1,8 +1,9 @@
 # SublimeEncodingUtils
-Converts selected characters from one "encoding" to another
+Converts selected characters from one "encoding" to another.
 
 - Entropy calculation (Shannon entropy)
 - Password strength calculation
+- Unix timestamp to datetime
 - Encoding: Base64
 - Hash: Md5, Sha256, Sha512
 - Cipher: ROT13
