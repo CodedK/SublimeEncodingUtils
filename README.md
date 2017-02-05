@@ -74,9 +74,13 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 
 `unicode_hex` : Converts unicode characters to their HEX representation
 
+`unixstamp` : Converts Unix timestamps to datetime
+
 `url_decode` : Converts escaped URL characters
 
-`url_encode` : Escapes special URL characters (urllib.quote). `old_school` argument (default: `true`) will return `+` instead of `%20` when encoding spaces.
+`url_encode` : Escapes special URL characters (urllib.quote). 
+	
+	`old_school` argument (default: `true`) will return `+` instead of `%20` when encoding spaces.
 
 `xml_deentitize` : Converts XML entities to a character
 

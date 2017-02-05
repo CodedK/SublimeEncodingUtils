@@ -54,6 +54,7 @@ class StringEncodePaste(sublime_plugin.WindowCommand):
         items = [
             ('NCR Encode', 'panos_ncr'),
             ('NCR Decode', 'dencr'),
+            ('Unixtime to datetime', 'unixstamp'),
             ('Html Entitize', 'html_entitize'),
             ('Html Deentitize', 'html_deentitize'),
             ('Css Escape', 'css_escape'),
