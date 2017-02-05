@@ -505,7 +505,6 @@ class HexUnicodeCommand(StringEncode):
                 b4 = int(rr.group(4), 16)
 
             ch = bytes([b1, b2, b3, b4]).decode('utf-16')
-
             uni_text = uni_text.replace(rr.group(0), ch)
             rr = r.search(uni_text)
 
