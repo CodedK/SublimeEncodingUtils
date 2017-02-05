@@ -1,5 +1,5 @@
 # SublimeEncodingUtils
-Converts characters from one "encoding" to another
+Converts selected characters from one "encoding" to another
 
 - Entropy calculation (Shannon entropy)
 - Password strength calculation
