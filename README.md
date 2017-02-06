@@ -1,5 +1,6 @@
-# SublimeEncodingUtils by Panos Kalatzantonakis
-Converts selected characters from one "encoding" to another.
+# SublimeEncodingUtils
+A useful multitool for programmers. The general idea is to convert selected characters from 
+any of the categories below to another.
 
 - Entropy calculation (Shannon entropy)
 - Password strength calculation
@@ -87,4 +88,4 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 `xml_entitize` : Converts characters to their XML entity
 
 
-
+ # by Panos Kalatzantonakis
