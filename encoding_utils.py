@@ -123,14 +123,15 @@ class StringEncode(sublime_plugin.TextCommand):
 
 class UnixstampCommand(StringEncode):
     def encode(self, text):
-        # from math import log, pow
         import datetime
-        import time
         ret = ''
-        zet = ''
-        ret = datetime.datetime.fromtimestamp(int(text)).strftime('%d-%m-%Y %H:%M:%S') # (1284101485) -- 10-09-2010 09:51:25
-        zet = str(time.ctime(int(text))) # (1284101485) -- Fri Sep 10 09:51:25 2010
+        try:
+            ret = datetime.datetime.fromtimestamp(int(text)).strftime('%d-%m-%Y %H:%M:%S')
+        except:
+            ret = datetime.datetime.strptime(str(text), "%d-%m-%Y %H:%M:%S")
+            ret = str(int(ret.timestamp()))
         return ret
+
 
 class ShannonCommand(StringEncode):
     def encode(self, text):

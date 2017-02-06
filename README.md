@@ -1,4 +1,4 @@
-# SublimeEncodingUtils
+# SublimeEncodingUtils by Panos Kalatzantonakis
 Converts selected characters from one "encoding" to another.
 
 - Entropy calculation (Shannon entropy)
