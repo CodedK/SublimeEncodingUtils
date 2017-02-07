@@ -1,6 +1,6 @@
 [
-    {"keys": ["ctrl+0"], "command": "panos_rot"},
-    {"keys": ["ctrl+shift+0"], "command": "shannon"},
+    {"keys": ["ctrl+0"], "command": "shannon"},
+    {"keys": ["ctrl+shift+0"], "command": "strength"},
     {"keys": ["ctrl+1"], "command": "hex_unicode"},
     {"keys": ["ctrl+shift+1"], "command": "unicode_hex"},
     {"keys": ["ctrl+2"], "command": "md5_encode"},
