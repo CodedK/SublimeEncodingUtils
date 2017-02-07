@@ -88,8 +88,7 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 `xml_entitize` : Converts characters to their XML entity
 
 
-Usage
------
+# Usage
 Access commands via:
 
 - Right-click menu item `EncodingUtils`
