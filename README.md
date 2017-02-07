@@ -1,4 +1,4 @@
-# SublimeEncodingUtils  Sublime Text 3 Package
+# SublimeEncodingUtils `Sublime Text 3 Package`
 A useful multitool for programmers. The general idea is to convert selected characters from 
 any of the categories below to another.
 
