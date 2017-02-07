@@ -75,7 +75,7 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 
 `unicode_hex` : Converts unicode characters to their HEX representation
 
-`unixstamp` : Converts Unix timestamps to datetime
+`unixstamp` : Converts Unix timestamps to datetime and vice versa
 
 `url_decode` : Converts escaped URL characters
 
