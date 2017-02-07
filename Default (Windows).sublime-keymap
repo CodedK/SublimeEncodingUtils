@@ -19,7 +19,6 @@
     {"keys": ["ctrl+8"], "command": "json_unescape"},
     {"keys": ["ctrl+shift+8"], "command": "json_escape"},
     {"keys": ["ctrl+9"], "command": "unixstamp"},
-    {"keys": ["ctrl+shift+9"], "command": "encode_html_entities"},
-    {"keys": ["ctrl+shift+h"], "command": "goto_documentation" }
+    {"keys": ["ctrl+shift+9"], "command": "encode_html_entities"}
 ]
 
