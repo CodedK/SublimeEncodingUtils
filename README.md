@@ -93,8 +93,10 @@ Access commands via:
 
 - Right-click menu item `EncodingUtils`
 - Menu item `Edit -> EncodingUtils`
-- Several keyboard shortcuts:
-  - Check Default (Windows).sublime-keymap, Default (OSX).sublime-keymap
+- Several keyboard shortcuts (check keymaps):
+	- Default (Windows).sublime-keymap
+	- Default (OSX).sublime-keymap
 
- # by Panos Kalatzantonakis
+ 
+ by Panos Kalatzantonakis
  MIT Licence
