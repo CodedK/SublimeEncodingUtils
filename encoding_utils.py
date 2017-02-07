@@ -28,6 +28,14 @@ except ValueError:
         xml_escape_table
     )
 
+
+# try:
+#     from .encodingutils.char_code import char_code_map
+# except:
+#     from encodingutils.char_code import char_code_map
+    # sublime.message_dialog('Error 2Ayt0Unia')
+
+
 try:
     import urllib.parse
     quote_plus = urllib.parse.quote_plus
@@ -128,8 +136,11 @@ class UnixstampCommand(StringEncode):
         try:
             ret = datetime.datetime.fromtimestamp(int(text)).strftime('%d-%m-%Y %H:%M:%S')
         except:
-            ret = datetime.datetime.strptime(str(text), "%d-%m-%Y %H:%M:%S")
-            ret = str(int(ret.timestamp()))
+            try:
+                ret = datetime.datetime.strptime(str(text), "%d-%m-%Y %H:%M:%S")
+                ret = str(int(ret.timestamp()))
+            except:
+                ret = text
         return ret
 
 
@@ -152,6 +163,95 @@ class ShannonCommand(StringEncode):
             return entropy
         ret = 0
         ret = str(h(text, range_printable))
+        return ret
+
+
+class EntropyCommand(StringEncode):
+    def encode(self, text):
+        # https://stackoverflow.com/questions/2979174/how-do-i-compute-the-approximate-entropy-of-a-bit-string
+        prob = [ float(text.count(c)) / len(text) for c in dict.fromkeys(list(text)) ]
+        entropy = str(- sum([ p * math.log(p) / math.log(2.0) for p in prob ]))
+        entropy = entropy
+        return entropy
+
+
+class IdealEntropyCommand(StringEncode):
+    def encode(self, text):
+        # https://arxiv.org/ftp/arxiv/papers/1305/1305.0954.pdf
+        # "Calculates the ideal Shannon entropy of a string with given length"
+        # https://stackoverflow.com/questions/2979174/how-do-i-compute-the-approximate-entropy-of-a-bit-string
+        # https://jeremykun.com/2012/04/21/kolmogorov-complexity-a-primer/
+        length = len(text)
+        prob = 1.0 / length
+        ret = str(-1.0 * length * prob * math.log(prob) / math.log(2.0))
+        return ret
+
+
+class MorseMeCommand(StringEncode):
+    def encode(self, text):
+        char_code_map = {
+            "a": ".-",
+            "b": "-...",
+            "c": "-.-.",
+            "d": "-..",
+            "e": ".",
+            "f": "..-.",
+            "g": "--.",
+            "h": "....",
+            "i": "..",
+            "j": ".---",
+            "k": "-.-",
+            "l": ".-..",
+            "m": "--",
+            "n": "-.",
+            "o": "---",
+            "p": ".--.",
+            "q": "--.-",
+            "r": ".-.",
+            "s": "...",
+            "t": "-",
+            # "": "..-",
+            "v": "...-",
+            "w": ".--",
+            "x": "-..-",
+            "y": "-.--",
+            "z": "--..",
+            " ": " ",
+            "1": ".----",
+            "2": "..---",
+            "3": "...--",
+            "4": "....-",
+            "5": ".....",
+            "6": "-....",
+            "7": "--...",
+            "8": "---..",
+            "9": "----.",
+            "0": "-----",
+            ".": ".-.-.-",
+            ",": "--..--",
+            "?": "..--..",
+            "'": ".----.",
+            "/": "-..-.",
+            "(": "-.--.",
+            ")": "-.--.-",
+            "&": ".-...",
+            ":": "---...",
+            ";": "-.-.-.",
+            "=": "-...-",
+            "+": ".-.-.",
+            "-": "-....-",
+            "_": "..--.-",
+            "\"": ".-..-.",
+            "$": "...-..-",
+            "!": "-.-.--",
+            "@": ".--.-."
+        }
+        ret = ''
+        for k in char_code_map:
+            if k in text:
+                v = char_code_map[k]
+                # ret = ret + '(' + v + ' | ' + k + ')'
+                ret = ret + v + ' '
         return ret
 
 
@@ -219,14 +319,13 @@ class DencrCommand(StringEncode):
         while re.search('&#[0-9]+;', text):
             match = re.search('&#([0-9]+);', text)
             text = text.replace(match.group(0), unichr(int(match.group(1), 10)))
-        text = text.replace('&amp;', '&')
+        text = text.replace('&', '&')
         return text
 
 
 class HtmlEntitizeCommand(StringEncode):
-
     def encode(self, text):
-        text = text.replace('&', '&amp;')
+        text = text.replace('&', '&')
         for k in html_escape_table:
             v = html_escape_table[k]
             text = text.replace(k, v)
@@ -252,7 +351,7 @@ class HtmlDeentitizeCommand(StringEncode):
             match = re.search('&#[xX]([a-fA-F0-9]+);', text)
             text = text.replace(
                 match.group(0), unichr(int('0x' + match.group(1), 16)))
-        text = text.replace('&amp;', '&')
+        text = text.replace('&', '&')
         return text
 
 
@@ -309,14 +408,14 @@ class SafeHtmlDeentitizeCommand(StringEncode):
             match = re.search('&#[xX]([a-fA-F0-9]+);', text)
             text = text.replace(
                 match.group(0), unichr(int('0x' + match.group(1), 16)))
-        text = text.replace('&amp;', '&')
+        text = text.replace('&', '&')
         return text
 
 
 class XmlEntitizeCommand(StringEncode):
 
     def encode(self, text):
-        text = text.replace('&', '&amp;')
+        text = text.replace('&', '&')
         for k in xml_escape_table:
             v = xml_escape_table[k]
             text = text.replace(k, v)
@@ -335,7 +434,7 @@ class XmlDeentitizeCommand(StringEncode):
         for k in xml_escape_table:
             v = xml_escape_table[k]
             text = text.replace(v, k)
-        text = text.replace('&amp;', '&')
+        text = text.replace('&', '&')
         return text
 
 
