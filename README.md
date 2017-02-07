@@ -1,4 +1,4 @@
-# SublimeEncodingUtils
+# SublimeEncodingUtils  Sublime Text 3 Package
 A useful multitool for programmers. The general idea is to convert selected characters from 
 any of the categories below to another.
 
@@ -88,4 +88,14 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 `xml_entitize` : Converts characters to their XML entity
 
 
+Usage
+-----
+Access commands via:
+
+- Right-click menu item `EncodingUtils`
+- Menu item `Edit -> EncodingUtils`
+- Several keyboard shortcuts:
+  - Check Default (Windows).sublime-keymap, Default (OSX).sublime-keymap
+
  # by Panos Kalatzantonakis
+ MIT Licence
