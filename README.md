@@ -1,5 +1,6 @@
 # SublimeEncodingUtils `Sublime Text 3 Package`
-A useful multitool for programmers. The general idea is to convert selected characters from 
+A useful multitool for programmers. 
+The general idea is to convert selected characters from 
 any of the categories below to another.
 
 - Entropy calculation (Shannon entropy)
@@ -12,6 +13,7 @@ any of the categories below to another.
 - Hexadecimal / Decimal
 - Unicode Hexadecimal representation
 - HTML entities
+- Morse encoding
 - CSS (e.g. unicode characters)
 - XML entities
 - URL encoding
