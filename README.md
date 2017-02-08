@@ -57,6 +57,8 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 
 `md5_encode` : Returns md5 hash from the selected string
 
+`morse_me` : Encode ascii string to Morse  
+
 `panos_ncr` : Converts characters to their Numeric Code Reference (NCR)
 
 `panos_rot` : Encodes string using caesar ROT13 cipher
