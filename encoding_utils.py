@@ -28,14 +28,6 @@ except ValueError:
         xml_escape_table
     )
 
-
-# try:
-#     from .encodingutils.char_code import char_code_map
-# except:
-#     from encodingutils.char_code import char_code_map
-    # sublime.message_dialog('Error 2Ayt0Unia')
-
-
 try:
     import urllib.parse
     quote_plus = urllib.parse.quote_plus
@@ -53,13 +45,11 @@ except ImportError:
 try:
     unichr(32)
 except NameError:
-
     def unichr(val):
         return chr(val)
 
 
 class StringEncodePaste(sublime_plugin.WindowCommand):
-
     def run(self, **kwargs):
         items = [
             ('NCR Encode', 'panos_ncr'),
@@ -90,10 +80,8 @@ class StringEncodePaste(sublime_plugin.WindowCommand):
             ('Hex Unicode', 'hex_unicode'),
         ]
 
-        # lines = list(map(lambda line: line[0], items))
-        lines = list(line[0] for line in items)
-        # commands = list(map(lambda line: line[1], items))
-        commands = list(line[1] for line in items)
+        lines = list(map(lambda line: line[0], items))
+        commands = list(map(lambda line: line[1], items))
         view = self.window.active_view()
         if not view:
             return
@@ -107,7 +95,6 @@ class StringEncodePaste(sublime_plugin.WindowCommand):
 
 
 class StringEncode(sublime_plugin.TextCommand):
-
     def run(self, edit, **kwargs):
         regions = self.view.sel()
 
@@ -123,12 +110,10 @@ class StringEncode(sublime_plugin.TextCommand):
             return
 
         elif 'source' in kwargs:
-            sublime.status_message(
-                'Unsupported source {0!r}'.format(kwargs['source']))
+            sublime.status_message('Unsupported source {0!r}'.format(kwargs['source']))
             return
 
-        # if any(map(lambda region: region.empty(), regions)):
-        if any(region.empty() for region in regions):
+        if any(map(lambda region: region.empty(), regions)):
             regions = [sublime.Region(0, self.view.size())]
         for region in regions:
             text = self.view.substr(region)
@@ -137,25 +122,17 @@ class StringEncode(sublime_plugin.TextCommand):
 
 
 class UnixstampCommand(StringEncode):
-
     def encode(self, text):
+        # from math import log, pow
         import datetime
+        import time
         ret = ''
-        try:
-            ret = datetime.datetime.fromtimestamp(
-                int(text)).strftime('%d-%m-%Y %H:%M:%S')
-        except ValueError:
-            try:
-                ret = datetime.datetime.strptime(
-                    str(text), "%d-%m-%Y %H:%M:%S")
-                ret = str(int(ret.timestamp()))
-            except ValueError:
-                ret = text
+        zet = ''
+        ret = datetime.datetime.fromtimestamp(int(text)).strftime('%d-%m-%Y %H:%M:%S') # (1284101485) -- 10-09-2010 09:51:25
+        zet = str(time.ctime(int(text))) # (1284101485) -- Fri Sep 10 09:51:25 2010
         return ret
 
-
 class ShannonCommand(StringEncode):
-
     def encode(self, text):
         def range_bytes():
             return range(256)
@@ -163,117 +140,24 @@ class ShannonCommand(StringEncode):
         def range_printable():
             return (ord(c) for c in string.printable)
 
-        def hfunx(data, iterator=range_bytes):
+        def h(data, iterator=range_bytes):
             if not data:
                 return 0
             entropy = 0
-            for i in iterator():
-                p_x = float(data.count(chr(i))) / len(data)
+            for x in iterator():
+                p_x = float(data.count(chr(x))) / len(data)
                 if p_x > 0:
                     entropy += - p_x * math.log(p_x, 2)
             return entropy
         ret = 0
-        ret = str(hfunx(text, range_printable))
-
-        return ret
-
-
-class EntropyCommand(StringEncode):
-
-    def encode(self, text):
-        prob = [float(text.count(c)) / len(text)
-                for c in dict.fromkeys(list(text))]
-        entropy = str(- sum([p * math.log(p) / math.log(2.0) for p in prob]))
-        entropy = entropy
-
-        return entropy
-
-
-class IdealEntropyCommand(StringEncode):
-
-    def encode(self, text):
-        length = len(text)
-        prob = 1.0 / length
-        ret = str(-1.0 * length * prob * math.log(prob) / math.log(2.0))
-
-        return ret
-
-
-class MorseMeCommand(StringEncode):
-
-    def encode(self, text):
-        char_code_map = {
-            "a": ".-",
-            "b": "-...",
-            "c": "-.-.",
-            "d": "-..",
-            "e": ".",
-            "f": "..-.",
-            "g": "--.",
-            "h": "....",
-            "i": "..",
-            "j": ".---",
-            "k": "-.-",
-            "l": ".-..",
-            "m": "--",
-            "n": "-.",
-            "o": "---",
-            "p": ".--.",
-            "q": "--.-",
-            "r": ".-.",
-            "s": "...",
-            "t": "-",
-            # "": "..-",
-            "v": "...-",
-            "w": ".--",
-            "x": "-..-",
-            "y": "-.--",
-            "z": "--..",
-            " ": " ",
-            "1": ".----",
-            "2": "..---",
-            "3": "...--",
-            "4": "....-",
-            "5": ".....",
-            "6": "-....",
-            "7": "--...",
-            "8": "---..",
-            "9": "----.",
-            "0": "-----",
-            ".": ".-.-.-",
-            ",": "--..--",
-            "?": "..--..",
-            "'": ".----.",
-            "/": "-..-.",
-            "(": "-.--.",
-            ")": "-.--.-",
-            "&": ".-...",
-            ":": "---...",
-            ";": "-.-.-.",
-            "=": "-...-",
-            "+": ".-.-.",
-            "-": "-....-",
-            "_": "..--.-",
-            "\"": ".-..-.",
-            "$": "...-..-",
-            "!": "-.-.--",
-            "@": ".--.-."
-        }
-        ret = ''
-        for k in char_code_map:
-            if k in text:
-                i = char_code_map[k]
-                # ret = ret + '(' + i + ' | ' + k + ')'
-                ret = ret + i + ' '
+        ret = str(h(text, range_printable))
         return ret
 
 
 class StrengthCommand(StringEncode):
-
     def encode(self, text):
 
         def read_str(psw):
-
             self.numeric = re.compile('\d')
             self.loweralpha = re.compile('[a-z]')
             self.upperalpha = re.compile('[A-Z]')
@@ -319,35 +203,32 @@ class PanosRotCommand(StringEncode):
 
 
 class PanosNcrCommand(StringEncode):
-
     def encode(self, text):
         ret = ''
         for i, c in enumerate(text):
             # if ord(c) > 127:
-            ret += '&#' + str(ord(c)) + ';'
+                ret += '&#' + str(ord(c)) + ';'
             # else:
-            # ret += c
+                # ret += c
         return ret
 
 
 class DencrCommand(StringEncode):
-
     def encode(self, text):
         while re.search('&#[0-9]+;', text):
             match = re.search('&#([0-9]+);', text)
-            text = text.replace(
-                match.group(0), unichr(int(match.group(1), 10)))
-        text = text.replace('&', '&')
+            text = text.replace(match.group(0), unichr(int(match.group(1), 10)))
+        text = text.replace('&amp;', '&')
         return text
 
 
 class HtmlEntitizeCommand(StringEncode):
-    
+
     def encode(self, text):
-        text = text.replace('&', '&')
+        text = text.replace('&', '&amp;')
         for k in html_escape_table:
-            kzr = html_escape_table[k]
-            text = text.replace(k, kzr)
+            v = html_escape_table[k]
+            text = text.replace(k, v)
         ret = ''
         for i, c in enumerate(text):
             if ord(c) > 127:
@@ -361,16 +242,16 @@ class HtmlDeentitizeCommand(StringEncode):
 
     def encode(self, text):
         for k in html_escape_table:
-            kzr = html_escape_table[k]
-            text = text.replace(kzr, k)
+            v = html_escape_table[k]
+            text = text.replace(v, k)
         for k in html5_escape_table:
-            kzr = html5_escape_table[k]
-            text = text.replace(kzr, k)
+            v = html5_escape_table[k]
+            text = text.replace(v, k)
         while re.search('&#[xX][a-fA-F0-9]+;', text):
             match = re.search('&#[xX]([a-fA-F0-9]+);', text)
             text = text.replace(
                 match.group(0), unichr(int('0x' + match.group(1), 16)))
-        text = text.replace('&', '&')
+        text = text.replace('&amp;', '&')
         return text
 
 
@@ -403,8 +284,8 @@ class SafeHtmlEntitizeCommand(StringEncode):
             # skip HTML reserved characters
             if k in html_reserved_list:
                 continue
-            kzr = html_escape_table[k]
-            text = text.replace(k, kzr)
+            v = html_escape_table[k]
+            text = text.replace(k, v)
         ret = ''
         for i, c in enumerate(text):
             if ord(c) > 127:
@@ -421,24 +302,23 @@ class SafeHtmlDeentitizeCommand(StringEncode):
             # skip HTML reserved characters
             if k in html_reserved_list:
                 continue
-            kvr = html_escape_table[k]
-            text = text.replace(kvr, k)
+            v = html_escape_table[k]
+            text = text.replace(v, k)
         while re.search('&#[xX][a-fA-F0-9]+;', text):
             match = re.search('&#[xX]([a-fA-F0-9]+);', text)
             text = text.replace(
                 match.group(0), unichr(int('0x' + match.group(1), 16)))
-        text = text.replace('&', '&')
+        text = text.replace('&amp;', '&')
         return text
 
 
 class XmlEntitizeCommand(StringEncode):
 
     def encode(self, text):
-
-        text = text.replace('&', '&')
+        text = text.replace('&', '&amp;')
         for k in xml_escape_table:
-            kvr = xml_escape_table[k]
-            text = text.replace(k, kvr)
+            v = xml_escape_table[k]
+            text = text.replace(k, v)
         ret = ''
         for i, c in enumerate(text):
             if ord(c) > 127:
@@ -452,9 +332,9 @@ class XmlDeentitizeCommand(StringEncode):
 
     def encode(self, text):
         for k in xml_escape_table:
-            kvr = xml_escape_table[k]
-            text = text.replace(kvr, k)
-        text = text.replace('&', '&')
+            v = xml_escape_table[k]
+            text = text.replace(v, k)
+        text = text.replace('&amp;', '&')
         return text
 
 
