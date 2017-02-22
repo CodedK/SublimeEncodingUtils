@@ -6,17 +6,15 @@ any of the categories below to another category.
 - Entropy calculation (Shannon entropy)
 - Password strength calculation
 - Unix timestamp to datetime
-- Encoding: Base64, Morse
+- Encoding: Base64, Morse, URL
 - Hash: Md5, Sha256, Sha512
 - Cipher: ROT13
 - Numeric Code Refence (NCR)
 - Hexadecimal / Decimal
 - Unicode Hexadecimal representation
 - HTML entities
-- Morse encoding
 - CSS (e.g. unicode characters)
 - XML entities
-- URL encoding
 - JSON format strings
 - Regular Expression escape
 - SQL 'LIKE' escape
