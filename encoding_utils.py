@@ -411,7 +411,7 @@ class XmlEntitizeCommand(StringEncode):
             v = xml_escape_table[k]
             text = text.replace(k, v)
         ret = ''
-        for i, c in enumerate(text):
+        for c in text[:]:
             if ord(c) > 127:
                 ret += hex(ord(c)).replace('0x', '&#x') + ';'
             else:
