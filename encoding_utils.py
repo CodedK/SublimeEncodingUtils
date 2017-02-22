@@ -137,8 +137,8 @@ class UnixstampCommand(StringEncode):
             except:
                 ret = text
         return ret
-    
-    
+
+
 class ShannonCommand(StringEncode):
     def encode(self, text):
         def range_bytes():
@@ -158,6 +158,90 @@ class ShannonCommand(StringEncode):
             return entropy
         ret = 0
         ret = str(h(text, range_printable))
+        return ret
+
+
+class EntropyCommand(StringEncode):
+    def encode(self, text):
+        prob = [float(text.count(c)) / len(text) for c in dict.fromkeys(list(text))]
+        entropy = str(- sum([p * math.log(p) / math.log(2.0) for p in prob]))
+        entropy = entropy
+        return entropy
+
+
+class IdealEntropyCommand(StringEncode):
+    def encode(self, text):
+        length = len(text)
+        prob = 1.0 / length
+        ret = str(-1.0 * length * prob * math.log(prob) / math.log(2.0))
+        return ret
+
+
+class MorseMeCommand(StringEncode):
+    def encode(self, text):
+        char_code_map = {
+            "a": ".-",
+            "b": "-...",
+            "c": "-.-.",
+            "d": "-..",
+            "e": ".",
+            "f": "..-.",
+            "g": "--.",
+            "h": "....",
+            "i": "..",
+            "j": ".---",
+            "k": "-.-",
+            "l": ".-..",
+            "m": "--",
+            "n": "-.",
+            "o": "---",
+            "p": ".--.",
+            "q": "--.-",
+            "r": ".-.",
+            "s": "...",
+            "t": "-",
+            # "": "..-",
+            "v": "...-",
+            "w": ".--",
+            "x": "-..-",
+            "y": "-.--",
+            "z": "--..",
+            " ": " ",
+            "1": ".----",
+            "2": "..---",
+            "3": "...--",
+            "4": "....-",
+            "5": ".....",
+            "6": "-....",
+            "7": "--...",
+            "8": "---..",
+            "9": "----.",
+            "0": "-----",
+            ".": ".-.-.-",
+            ",": "--..--",
+            "?": "..--..",
+            "'": ".----.",
+            "/": "-..-.",
+            "(": "-.--.",
+            ")": "-.--.-",
+            "&": ".-...",
+            ":": "---...",
+            ";": "-.-.-.",
+            "=": "-...-",
+            "+": ".-.-.",
+            "-": "-....-",
+            "_": "..--.-",
+            "\"": ".-..-.",
+            "$": "...-..-",
+            "!": "-.-.--",
+            "@": ".--.-."
+        }
+        ret = ''
+        for k in char_code_map:
+            if k in text:
+                zpp = char_code_map[k]
+                # ret = ret + '(' + v + ' | ' + k + ')'
+                ret = ret + zpp + ' '
         return ret
 
 
@@ -212,7 +296,7 @@ class PanosRotCommand(StringEncode):
 class PanosNcrCommand(StringEncode):
     def encode(self, text):
         ret = ''
-        for i, c in enumerate(text):
+        for c in text[:]:
             # if ord(c) > 127:
                 ret += '&#' + str(ord(c)) + ';'
             # else:
