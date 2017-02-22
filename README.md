@@ -69,7 +69,7 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 
 `sha512_encode` : Returns sha512 hash from the selected string
 
-`shannon` : Computes Shannon entropy
+`entropy` : Computes Shannon entropy
 
 `strength` : Password strength calculator. Outputs Shannon entropy based on charactrer set used.
 
