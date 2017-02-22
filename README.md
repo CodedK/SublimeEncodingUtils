@@ -37,6 +37,8 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 
 `dencr` : Converts Numeric Code Reference to characters
 
+`entropy` : Computes Shannon entropy
+
 `escape_like` : Escapes SQL-LIKE meta characters
 
 `escape_regex` : Escapes regex meta-characters
@@ -68,8 +70,6 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 `sha256_encode` : Returns sha256 hash from the selected string
 
 `sha512_encode` : Returns sha512 hash from the selected string
-
-`entropy` : Computes Shannon entropy
 
 `strength` : Password strength calculator. Outputs Shannon entropy based on charactrer set used.
 
