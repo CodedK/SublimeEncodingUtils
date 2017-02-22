@@ -126,7 +126,7 @@ class UnixstampCommand(StringEncode):
         import datetime
         ret = ''
         try:
-            if len(text)>10:
+            if len(text) > 10:
                 ret = datetime.datetime.fromtimestamp(float(text)).strftime('%d-%m-%Y %H:%M:%S:%f')
             else:
                 ret = datetime.datetime.fromtimestamp(int(text)).strftime('%d-%m-%Y %H:%M:%S')
@@ -136,28 +136,6 @@ class UnixstampCommand(StringEncode):
                 ret = str(int(ret.timestamp()))
             except:
                 ret = text
-        return ret
-
-
-class ShannonCommand(StringEncode):
-    def encode(self, text):
-        def range_bytes():
-            return range(256)
-
-        def range_printable():
-            return (ord(c) for c in string.printable)
-
-        def h(data, iterator=range_bytes):
-            if not data:
-                return 0
-            entropy = 0
-            for x in iterator():
-                p_x = float(data.count(chr(x))) / len(data)
-                if p_x > 0:
-                    entropy += - p_x * math.log(p_x, 2)
-            return entropy
-        ret = 0
-        ret = str(h(text, range_printable))
         return ret
 
 
@@ -623,7 +601,7 @@ class HexUnicodeCommand(StringEncode):
                 + (int(rr.group(3), 16) << 8) \
                 + (int(rr.group(4), 16))
 
-            if (tmp <= 0xffff):
+            if tmp <= 0xffff:
                 ch = chr(tmp)
             else:
                 tmp -= 0x10000
