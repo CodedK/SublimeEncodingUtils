@@ -2,7 +2,7 @@
   "name": "EncodingUtils",
   "description": "Converts selected characters from one encoding to another.",
   "author": "Panos Kalatzantonakis",
-  "version": "10.012017",
+  "version": "10.012017.001",
   "details": "https://github.com/CodedK/SublimeEncodingUtils",
   "labels": ["text manipulation"],
   "releases": [
