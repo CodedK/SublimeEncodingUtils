@@ -18,10 +18,6 @@
                 "command": "ideal_entropy"
             },
             {
-                "caption": "Encode to Morse",
-                "command": "morse_me"
-            },
-            {
                 "caption": "Unix timestamp to datetime",
                 "command": "unixstamp"
             },
@@ -97,6 +93,10 @@
             {
                 "caption": "Sha512",
                 "command": "sha512_encode"
+            },
+            {
+                "caption": "Encode to Morse",
+                "command": "morse_me"
             },
             {
                 "caption": "-"
