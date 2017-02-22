@@ -283,7 +283,7 @@ class StrengthCommand(StringEncode):
 class CheckOrdCommand(StringEncode):
     def encode(self, text):
         ret = ''
-        for i, c in enumerate(text):
+        for c in text[:]:
             ret += str(ord(c)) + '.'
         return ret
 
@@ -321,7 +321,7 @@ class HtmlEntitizeCommand(StringEncode):
             v = html_escape_table[k]
             text = text.replace(k, v)
         ret = ''
-        for i, c in enumerate(text):
+        for c in text[:]:
             if ord(c) > 127:
                 ret += hex(ord(c)).replace('0x', '&#x') + ';'
             else:
@@ -350,7 +350,7 @@ class CssEscapeCommand(StringEncode):
 
     def encode(self, text):
         ret = ''
-        for i, c in enumerate(text):
+        for c in text[:]:
             if ord(c) > 127:
                 ret += hex(ord(c)).replace('0x', '\\')
             else:
@@ -378,7 +378,7 @@ class SafeHtmlEntitizeCommand(StringEncode):
             v = html_escape_table[k]
             text = text.replace(k, v)
         ret = ''
-        for i, c in enumerate(text):
+        for c in text[:]:
             if ord(c) > 127:
                 ret += hex(ord(c)).replace('0x', '&#x') + ';'
             else:
