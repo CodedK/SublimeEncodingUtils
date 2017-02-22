@@ -52,6 +52,8 @@ except NameError:
 class StringEncodePaste(sublime_plugin.WindowCommand):
     def run(self, **kwargs):
         items = [
+            ('Shannon Entropy', 'entropy'),
+            ('Password Strength', 'strength'),
             ('NCR Encode', 'panos_ncr'),
             ('NCR Decode', 'dencr'),
             ('Unixtime to datetime', 'unixstamp'),
@@ -72,6 +74,8 @@ class StringEncodePaste(sublime_plugin.WindowCommand):
             ('Md5 Encode', 'md5_encode'),
             ('Sha256 Encode', 'sha256_encode'),
             ('Sha512 Encode', 'sha512_encode'),
+            ('Sha512 Encode', 'sha512_encode'),
+            ('Encode to Morse', 'morse_me'),
             ('Escape Regex', 'escape_regex'),
             ('Escape Like', 'escape_like'),
             ('Hex Dec', 'hex_dec'),

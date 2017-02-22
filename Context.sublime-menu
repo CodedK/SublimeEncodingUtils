@@ -18,6 +18,10 @@
                 "command": "ideal_entropy"
             },
             {
+                "caption": "Password Strength",
+                "command": "strength"
+            },
+            {
                 "caption": "Unix timestamp to datetime",
                 "command": "unixstamp"
             },
