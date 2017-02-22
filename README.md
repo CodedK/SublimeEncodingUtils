@@ -1,12 +1,12 @@
 # SublimeEncodingUtils `Sublime Text 3 Package`
 A useful multitool for programmers. 
 The general idea is to convert selected characters from 
-any of the categories below to another.
+any of the categories below to another category.
 
 - Entropy calculation (Shannon entropy)
 - Password strength calculation
 - Unix timestamp to datetime
-- Encoding: Base64
+- Encoding: Base64, Morse
 - Hash: Md5, Sha256, Sha512
 - Cipher: ROT13
 - Numeric Code Refence (NCR)
