@@ -11,7 +11,11 @@
             },
             {
                 "caption": "Shannon Entropy",
-                "command": "shannon"
+                "command": "entropy"
+            },
+            {
+                "caption": "Ideal Entropy",
+                "command": "ideal_entropy"
             },
             {
                 "caption": "Encode to Morse",
