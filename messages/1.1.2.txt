@@ -1,0 +1,3 @@
+minor fixes
+fixed NCR algorithm
+added custom messages
