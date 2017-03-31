@@ -279,10 +279,10 @@ class PanosNcrCommand(StringEncode):
     def encode(self, text):
         ret = ''
         for c in text[:]:
-            # if ord(c) > 127:
+            if ord(c) > 127:
                 ret += '&#' + str(ord(c)) + ';'
-            # else:
-                # ret += c
+            else:
+                ret += c
         return ret
 
 
