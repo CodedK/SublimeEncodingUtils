@@ -92,6 +92,11 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 `xml_entitize` : Converts characters to their XML entity
 
 
+
+# Fix wrong encoded Greek characters
+Using command `fix_wrong_encoding` you can fix wrongly encoded Greek characters
+
+
 # Usage
 Access commands via:
 
