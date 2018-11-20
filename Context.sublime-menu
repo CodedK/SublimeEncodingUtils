@@ -37,6 +37,10 @@
                 "command": "dencr"
             },
             {
+                "caption": "Fix Wrong Greek Encoding",
+                "command": "fix_wrong_encoding"
+            },
+            {
                 "caption": "-"
             },
             {
@@ -140,5 +144,5 @@
                 "caption": "Hexadecimal to Unicode",
                 "command": "hex_unicode"
             }
-        ]        
+        ]
 }]
