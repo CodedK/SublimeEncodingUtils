@@ -6,7 +6,7 @@ any of the categories below to another category.
 - Entropy calculation (Shannon entropy)
 - Password strength calculation
 - Unix timestamp to datetime
-- Encoding: Base64, Morse, URL
+- Encoding: Base64, Morse, URL, Fix wrong Greek encoding
 - Hash: Md5, Sha256, Sha512
 - Cipher: ROT13
 - Numeric Code Refence (NCR)
