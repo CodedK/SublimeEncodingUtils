@@ -1,6 +1,6 @@
 # SublimeEncodingUtils `Sublime Text 3 Package`
-A useful multitool for programmers. 
-The general idea is to convert selected characters from 
+A useful multitool for programmers.
+The general idea is to convert selected characters from
 any of the categories below to another category.
 
 - Entropy calculation (Shannon entropy)
@@ -20,8 +20,8 @@ any of the categories below to another category.
 - SQL 'LIKE' escape
 
 # Add Repository to sublime
-To add a repository using Package Control press `ctrl+shift+p` (Win, Linux) or `cmd+shift+p` (OS X). 
-Type `Add Repository`, enter the URL  `https://github.com/CodedK/SublimeEncodingUtils`. 
+To add a repository using Package Control press `ctrl+shift+p` (Win, Linux) or `cmd+shift+p` (OS X).
+Type `Add Repository`, enter the URL  `https://github.com/CodedK/SublimeEncodingUtils`.
 
 # Installation
 Using Package Control, press ctrl+shift+p, type "install package" and then "EncodingUtils".
@@ -43,6 +43,8 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 
 `escape_regex` : Escapes regex meta-characters
 
+`fix_wrong_encoding` : Fixes wrongly encoded Greek characters
+
 `hex_dec` : Converts hexademical to decimal
 
 `hex_unicode` : Converts HEX representation to the respective unicode character
@@ -57,7 +59,7 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 
 `md5_encode` : Returns md5 hash from the selected string
 
-`morse_me` : Encode ascii string to Morse  
+`morse_me` : Encode ascii string to Morse
 
 `panos_ncr` : Converts characters to their Numeric Code Reference (NCR)
 
@@ -81,8 +83,8 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 
 `url_decode` : Converts escaped URL characters
 
-`url_encode` : Escapes special URL characters (urllib.quote). 
-	
+`url_encode` : Escapes special URL characters (urllib.quote).
+
 	`old_school` argument (default: `true`) will return `+` instead of `%20` when encoding spaces.
 
 `xml_deentitize` : Converts XML entities to a character
@@ -99,6 +101,6 @@ Access commands via:
 	- Default (Windows).sublime-keymap
 	- Default (OSX).sublime-keymap
 
- 
+
  by Panos Kalatzantonakis
  MIT Licence
