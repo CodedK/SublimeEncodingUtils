@@ -95,7 +95,7 @@ Using Package Control, press ctrl+shift+p, type "install package" and then "Enco
 
 # Fix wrong encoded Greek characters
 Using command `fix_wrong_encoding` you can fix wrongly encoded Greek characters<br>
-Words like this `ÄïêéìÞ ÅëëçíéêÜ` -> `Δοκιμή Ελληνικά`
+Turn wronlgy encoded Greek text: From this ***ÄïêéìÞ ÅëëçíéêÜ*** <kbd>↷</kbd> to this ***Δοκιμή Ελληνικά***
 
 # Usage
 Access commands via:
