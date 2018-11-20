@@ -321,7 +321,10 @@ class PanosHcrCommand(StringEncode):
 
 class FixWrongEncodingCommand(StringEncode):
     def encode(self, text):
-        return text.encode('iso-8859-1').decode('iso-8859-7')
+        ret = ''
+        for c in text[:]:
+            ret += c.encode('iso-8859-1').decode('iso-8859-7')
+        return ret
 
 
 class HtmlEntitizeCommand(StringEncode):
