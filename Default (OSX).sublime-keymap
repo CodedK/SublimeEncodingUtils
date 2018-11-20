@@ -1,6 +1,6 @@
 [
-    {"keys": ["super+0"], "command": "shannon"},
-    {"keys": ["super+shift+0"], "command": "strength"},
+    {"keys": ["super+keypad1"], "command": "fix_wrong_encoding"},
+    {"keys": ["super+keypad_divide"], "command": "strength"},
     {"keys": ["super+1"], "command": "hex_unicode"},
     {"keys": ["super+shift+1"], "command": "unicode_hex"},
     {"keys": ["super+2"], "command": "md5_encode"},
