@@ -52,36 +52,37 @@ except NameError:
 class StringEncodePaste(sublime_plugin.WindowCommand):
     def run(self, **kwargs):
         items = [
-            ('Shannon Entropy', 'entropy'),
-            ('Password Strength', 'strength'),
-            ('NCR Encode', 'panos_ncr'),
-            ('NCR Decode', 'dencr'),
-            ('Unixtime to datetime', 'unixstamp'),
-            ('Html Entitize', 'html_entitize'),
-            ('Html Deentitize', 'html_deentitize'),
+            ('Base64 Decode', 'base64_decode'),
+            ('Base64 Encode', 'base64_encode'),
             ('Css Escape', 'css_escape'),
             ('Css Unescape', 'css_unescape'),
-            ('Safe Html Entitize', 'safe_html_entitize'),
-            ('Safe Html Deentitize', 'safe_html_deentitize'),
-            ('Xml Entitize', 'xml_entitize'),
-            ('Xml Deentitize', 'xml_deentitize'),
+            ('Dec Hex', 'dec_hex'),
+            ('Encode to Morse', 'morse_me'),
+            ('Escape Like', 'escape_like'),
+            ('Escape Regex', 'escape_regex'),
+            ('Fix Wrong Encoding', 'fix_wrong_encoding'),
+            ('Hex Dec', 'hex_dec'),
+            ('Hex Unicode', 'hex_unicode'),
+            ('Html Deentitize', 'html_deentitize'),
+            ('Html Entitize', 'html_entitize'),
             ('Json Escape', 'json_escape'),
             ('Json Unescape', 'json_unescape'),
-            ('Url Encode', 'url_encode'),
-            ('Url Decode', 'url_decode'),
-            ('Base64 Encode', 'base64_encode'),
-            ('Base64 Decode', 'base64_decode'),
             ('Md5 Encode', 'md5_encode'),
+            ('NCR Decode', 'dencr'),
+            ('NCR Encode', 'panos_ncr'),
+            ('Password Strength', 'strength'),
+            ('Safe Html Deentitize', 'safe_html_deentitize'),
+            ('Safe Html Entitize', 'safe_html_entitize'),
             ('Sha256 Encode', 'sha256_encode'),
             ('Sha512 Encode', 'sha512_encode'),
             ('Sha512 Encode', 'sha512_encode'),
-            ('Encode to Morse', 'morse_me'),
-            ('Escape Regex', 'escape_regex'),
-            ('Escape Like', 'escape_like'),
-            ('Hex Dec', 'hex_dec'),
-            ('Dec Hex', 'dec_hex'),
+            ('Shannon Entropy', 'entropy'),
             ('Unicode Hex', 'unicode_hex'),
-            ('Hex Unicode', 'hex_unicode'),
+            ('Unixtime to datetime', 'unixstamp'),
+            ('Url Decode', 'url_decode'),
+            ('Url Encode', 'url_encode'),
+            ('Xml Deentitize', 'xml_deentitize'),
+            ('Xml Entitize', 'xml_entitize'),
         ]
 
         lines = list(map(lambda line: line[0], items))
@@ -231,12 +232,12 @@ class StrengthCommand(StringEncode):
     def encode(self, text):
 
         def read_str(psw):
-            self.numeric = re.compile('\d')
-            self.loweralpha = re.compile('[a-z]')
-            self.upperalpha = re.compile('[A-Z]')
+            self.numeric = re.compile(r'\d')
+            self.loweralpha = re.compile(r'[a-z]')
+            self.upperalpha = re.compile(r'[A-Z]')
             # self.symbols = re.compile('[-_.:,;<>?"#$%&/()!@~]')
-            self.symbols = re.compile('[-!~`@#$%^&*()_+=/?>.<,;:"]')
-            self.extended = re.compile('[^\x00-\x7F]+')
+            self.symbols = re.compile(r'[-!~`@#$%^&*()_+=/?>.<,;:"]')
+            self.extended = re.compile('[^\x00-r\x7F]+')
             self.num_of_symbols = 20  # adjust accordingly...
             from math import log, pow
             charset = 0
@@ -279,10 +280,11 @@ class PanosNcrCommand(StringEncode):
     def encode(self, text):
         ret = ''
         for c in text[:]:
-            if ord(c) > 127:
-                ret += '&#' + str(ord(c)) + ';'
-            else:
-                ret += c
+            ret += '&#' + str(ord(c)) + ';'
+            # if ord(c) > 127:
+            #     ret += '&#' + str(ord(c)) + ';'
+            # else:
+            #     ret += c
         return ret
 
 
@@ -293,6 +295,33 @@ class DencrCommand(StringEncode):
             text = text.replace(match.group(0), unichr(int(match.group(1), 10)))
         text = text.replace('&amp;', '&')
         return text
+
+
+class DehcrCommand(StringEncode):
+    def encode(self, text):
+        while re.search('&#0?[xΧ][0-9a-fA-F]+;', text):
+            # &#x395;
+            match = re.search('&#0?[xΧ]([0-9a-fA-F]+);', text)
+            text = text.replace(match.group(0), unichr(int(match.group(1), 16)))
+            # text = text.replace(match.group(0), unichr(int(match.group(1), 10)))
+        text = text.replace('&amp;', '&')
+        return text
+
+
+class PanosHcrCommand(StringEncode):
+    def encode(self, text):
+        ret = ''
+        for c in text[:]:
+            # if ord(c) > 127:
+                ret += '&#' + str(hex(ord(c))) + ';'
+            # else:
+                # ret += c
+        return ret
+
+
+class FixWrongEncodingCommand(StringEncode):
+    def encode(self, text):
+        return text.encode('iso-8859-1').decode('iso-8859-7')
 
 
 class HtmlEntitizeCommand(StringEncode):
@@ -462,6 +491,14 @@ class Sha256EncodeCommand(StringEncode):
 
     def encode(self, text):
         hasher = hashlib.sha256()
+        hasher.update(bytes(text, 'utf-8'))
+        return hasher.hexdigest()
+
+
+class Sha1EncodeCommand(StringEncode):
+
+    def encode(self, text):
+        hasher = hashlib.sha1()
         hasher.update(bytes(text, 'utf-8'))
         return hasher.hexdigest()
 
