@@ -3,21 +3,21 @@ A useful multitool for programmers.
 The general idea is to convert selected characters from
 any of the categories below to another category.
 
-- Calculate character ***Entropy*** (Shannon entropy)
-- Calculate ***Password strength***
 - Calculate ***CIPHER***: ROT13
-- Encoding: Base64, Morse, URL Encoding
-- Fix files with ***wrong encoding*** (ÄïêéìÞ ÅëëçíéêÜ  <kbd>↷</kbd> Δοκιμή Ελληνικά)
 - Calculate ***Hash***: Md5, Sha256, Sha512
-- Hexadecimal / Decimal
+- Calculate ***Password strength***
+- Calculate character ***Entropy*** (Shannon entropy)
+- Convert ***unicode*** characters to their ***Hexadecimal*** representation and vice versa
+- Convert ***unix timestamp*** to ***datetime*** and vice versa
+- Convert characters to their ***HTML entities*** and vice versa
+- Convert characters to their ***Numeric Code Refence*** (NCR)
+- Convert characters to their ***XML entities*** and vice versa
+- Encoding: Base64, Morse, URL Encoding
 - Escape / Un-Escape ***JSON***format strings
 - Escape / Un-Escape ***Regular Expression***
 - Escape / Un-Escape ***SQL statements***
-- Convert characters to their ***HTML entities*** and vice versa
-- Convert characters to their ***Numeric Code Refence*** (NCR)
-- Convert ***unicode*** characters to their ***Hexadecimal*** representation and vice versa
-- Convert ***unix timestamp*** to ***datetime*** and vice versa
-- Convert characters to their ***XML entities*** and vice versa
+- Fix files with ***wrong encoding*** (ÄïêéìÞ ÅëëçíéêÜ  <kbd>↷</kbd> Δοκιμή Ελληνικά)
+- Hexadecimal / Decimal
 
 # Add Repository to sublime
 To add a repository using Package Control press <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> (Win, Linux) or <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> (OS X).<br>
