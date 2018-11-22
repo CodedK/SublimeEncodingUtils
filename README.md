@@ -3,7 +3,7 @@ A useful multitool for programmers.
 The general idea is to convert selected characters from
 any of the categories below to another category.
 
-- Calculate character ***`Entropy`***(Shannon entropy)
+- Calculate character ***`Entropy`*** (Shannon entropy)
 - Calculate ***`Password strength`***
 - Calculate ***`CIPHER`***: ROT13
 - Encoding: Base64, Morse, URL Encoding
