@@ -1,9 +1,8 @@
 # SublimeEncodingUtils `Sublime Text 3 Package`
-A useful multitool for programmers.
-The general idea is to convert selected characters from
-any of the categories below to another category.
+A useful multitool for programmers.<br>
+The general idea is to convert selected characters from any of the categories below to another category.
 
-- Calculate ***CIPHER***: ROT13
+- Calculate ***`CIPHER`***: ROT13
 - Calculate ***Hash***: Md5, Sha256, Sha512
 - Calculate ***Password strength***
 - Calculate character ***Entropy*** (Shannon entropy)
