@@ -5,7 +5,7 @@ any of the categories below to another category.
 
 - Cipher: ROT13
 - CSS (e.g. unicode characters)
-- Encoding: Base64, Morse, URL, Fix wrong Greek encoding
+- Encoding: Base64, Morse, URL
 - Entropy calculation (Shannon entropy)
 - Fix files with wrong encoding
 - Hash: Md5, Sha256, Sha512
