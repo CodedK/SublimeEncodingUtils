@@ -13,7 +13,7 @@ any of the categories below to another category.
 - Convert characters to their ***Numeric Code Refence*** (NCR)
 - Convert characters to their ***XML entities*** and vice versa
 - Encoding: Base64, Morse, URL Encoding
-- Escape / Un-Escape ***JSON***format strings
+- Escape / Un-Escape ***JSON*** format strings
 - Escape / Un-Escape ***Regular Expression***
 - Escape / Un-Escape ***SQL statements***
 - Fix files with ***wrong encoding*** (ÄïêéìÞ ÅëëçíéêÜ  <kbd>↷</kbd> Δοκιμή Ελληνικά)
