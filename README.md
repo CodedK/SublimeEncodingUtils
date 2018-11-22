@@ -7,7 +7,7 @@ any of the categories below to another category.
 - CSS (e.g. unicode characters)
 - Encoding: Base64, Morse, URL, Fix wrong Greek encoding
 - Entropy calculation (Shannon entropy)
-- Fix wrong Encodings
+- Fix files with wrong encoding
 - Hash: Md5, Sha256, Sha512
 - Hexadecimal / Decimal
 - HTML entities
