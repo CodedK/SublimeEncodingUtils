@@ -20,7 +20,7 @@ any of the categories below to another category.
 - SQL 'LIKE' escape
 
 # Add Repository to sublime
-To add a repository using Package Control press `ctrl+shift+p` (Win, Linux) or `cmd+shift+p` (OS X).
+To add a repository using Package Control press <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> (Win, Linux) or <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> (OS X).
 Type `Add Repository`, enter the URL  `https://github.com/CodedK/SublimeEncodingUtils`.
 
 # Installation
