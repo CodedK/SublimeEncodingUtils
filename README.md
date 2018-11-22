@@ -20,11 +20,11 @@ any of the categories below to another category.
 - SQL 'LIKE' escape
 
 # Add Repository to sublime
-To add a repository using Package Control press <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> (Win, Linux) or <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> (OS X).
+To add a repository using Package Control press <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> (Win, Linux) or <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> (OS X).<br>
 Type `Add Repository`, enter the URL  `https://github.com/CodedK/SublimeEncodingUtils`.
 
 # Installation
-Using Package Control, press <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd>, type "install package" and then "EncodingUtils".
+Using Package Control, press <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd>, type `"install package"` and then `"EncodingUtils"`.
 
 # Commands
 `base64_decode` : Encode into base64
