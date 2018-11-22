@@ -3,21 +3,22 @@ A useful multitool for programmers.
 The general idea is to convert selected characters from
 any of the categories below to another category.
 
-- Entropy calculation (Shannon entropy)
-- Password strength calculation
-- Unix timestamp to datetime
-- Encoding: Base64, Morse, URL, Fix wrong Greek encoding
-- Hash: Md5, Sha256, Sha512
 - Cipher: ROT13
-- Numeric Code Refence (NCR)
-- Hexadecimal / Decimal
-- Unicode Hexadecimal representation
-- HTML entities
 - CSS (e.g. unicode characters)
-- XML entities
+- Encoding: Base64, Morse, URL, Fix wrong Greek encoding
+- Entropy calculation (Shannon entropy)
+- Fix wrong Encodings
+- Hash: Md5, Sha256, Sha512
+- Hexadecimal / Decimal
+- HTML entities
 - JSON format strings
+- Numeric Code Refence (NCR)
+- Password strength calculation
 - Regular Expression escape
 - SQL 'LIKE' escape
+- Unicode Hexadecimal representation
+- Unix timestamp to datetime
+- XML entities
 
 # Add Repository to sublime
 To add a repository using Package Control press <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> (Win, Linux) or <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> (OS X).<br>
