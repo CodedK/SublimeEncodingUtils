@@ -2,16 +2,16 @@
 A useful multitool for programmers.<br>
 The general idea is to convert selected characters from any of the categories below to another category.
 
-- Calculate ***CIPHER***: ROT13
-- Calculate ***Hash***: Md5, Sha256, Sha512
+- Calculate ***CIPHER***: `ROT13`
+- Calculate ***Hash***: `Md5`, `Sha256`, `Sha512`
 - Calculate ***Password strength***
 - Calculate character ***Entropy*** (Shannon entropy)
 - Convert ***unicode*** characters to their ***Hexadecimal*** representation and vice versa
 - Convert ***unix timestamp*** to ***datetime*** and vice versa
 - Convert characters to their ***HTML entities*** and vice versa
-- Convert characters to their ***Numeric Code Refence*** (NCR)
+- Convert characters to their ***Numeric Code Refence*** `NCR`
 - Convert characters to their ***XML entities*** and vice versa
-- Encoding: Base64, Morse, URL Encoding
+- Encoding: `Base64`, `Morse`, `URL Encoding`
 - Escape / Un-Escape ***JSON*** format strings
 - Escape / Un-Escape ***Regular Expression***
 - Escape / Un-Escape ***SQL statements***
