@@ -320,11 +320,95 @@ class PanosHcrCommand(StringEncode):
 
 
 class FixWrongEncodingCommand(StringEncode):
-    def encode(self, text):
+    # def run(self, view):
+    #     self.view = view
+    #     # Prompt user for password
+    #     message = "Create a Password:"
+    #     view.window().show_input_panel(message, "", self.on_done, None, None)
+    def run(self, text):
+        global my_text
+
+        for region in self.view.sel():
+            my_text = self.view.substr(region)
+            # self.view.replace(my_text, region, 'replacement') # den douleyei
+            # self.view.run_command('insert_snippet', {'contents': my_text})  # DOULEYEI
+            # self.view.show_popup(text, max_width=200, on_hide=self.done)
+
+        # Enas tropos epilogis olokliris tis grammis
+        # currentposition = self.view.sel()[0].begin()
+        # currentline = self.view.full_line(currentposition)
+        # my_sel = self.view.substr(currentline)
+        # self.view.show_popup('The Text other line:' + my_sel, max_width=200, on_hide=self.done)
+
+
+        self.check_first()
+        # print('User sent:', ret)
+        # 'something' is the default message
+        # self.view.window().show_input_panel("Please select the correct encoding:", 'iso-8859-7', self.on_done(text, text), None, None)
+
+    def done(self):
+        print("finished")
+
+
+    def check_first(self):
+        # ÄïêéìÞ ÅëëçíéêÜ
+        # window = sublime.active_window()
+        # window.run_command('hide_panel')
+        # window.show_input_panel('Search For 2:', '', self.on_done, None, None)
+        items = ['iso-8859-1', 'iso-8859-2', 'iso-8859-3', 'iso-8859-4', 'iso-8859-5', 'iso-8859-6', 'iso-8859-7', 'iso-8859-8', 'iso-8859-9', 'iso-8859-10']
+        self.view.show_popup_menu(items, self.on_done)
+        # self.view.show_popup('The Text other line', max_width=100, on_hide=self.on_done(edit))
+
+    def on_done(self, result):
+        # print(self.window.active_view().sel())
+        # regions = self.view.sel()
+        # mytext = self.view.substr(regions)
+        # self.view.show_popup(result)
+        def_enc = 'iso-8859-7'
+        if result == 0:
+            def_enc = 'iso-8859-1'
+        if result == 1:
+            def_enc = 'iso-8859-2'
+        if result == 2:
+            def_enc = 'iso-8859-3'
+        if result == 3:
+            def_enc = 'iso-8859-4'
+        if result == 4:
+            def_enc = 'iso-8859-5'
+        if result == 5:
+            def_enc = 'iso-8859-6'
+        if result == 6:
+            def_enc = 'iso-8859-7'
+        if result == 7:
+            def_enc = 'iso-8859-8'
+        if result == 8:
+            def_enc = 'iso-8859-9'
+        if result == 9:
+            def_enc = 'iso-8859-10'
         ret = ''
-        for c in text[:]:
-            ret += c.encode('iso-8859-1').decode('iso-8859-7')
-        return ret
+        print("Selected value:" + str(result))
+        for c in my_text[:]:
+            ret += c.encode('iso-8859-1').decode(def_enc)
+        self.view.run_command('insert_snippet', {'contents': ret})  # DOULEYEI
+        # return ret
+
+
+
+
+
+    # def on_done(self, password):
+
+    #     # self.view.run_command("encode", {"password": password})
+
+
+    #     # def encode(self, text):
+    #     #     ret = ''
+    #     #     for c in text[:]:
+    #     #         ret += c.encode('iso-8859-1').decode('iso-8859-7')
+    #     #     return ret
+    #     #     # 'something' is the default message
+    #     #     # self.view.window().show_input_panel("Please select the correct encoding:", 'iso-8859-7', self.on_done(text, text), None, None)
+
 
 
 class HtmlEntitizeCommand(StringEncode):
