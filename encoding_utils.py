@@ -356,10 +356,10 @@ class FixWrongEncodingCommand(StringEncode):
         # ÄïêéìÞ ÅëëçíéêÜ
 
         # window.show_input_panel('Search For 2:', '', self.on_done, None, None)
-        items = ['iso-8859-7', '-', 'iso-8859-1', 'iso-8859-2', 'iso-8859-3', 'iso-8859-4', 'iso-8859-5', 'iso-8859-6', 'iso-8859-7', 'iso-8859-8', 'iso-8859-9', 'iso-8859-10']
+        items = ['iso-8859-1', 'iso-8859-2', 'iso-8859-3', 'iso-8859-4', 'iso-8859-5', 'iso-8859-6', 'iso-8859-7', 'iso-8859-8', 'iso-8859-9', 'iso-8859-10']
         # self.view.show_popup_menu(items, self.on_done)
         self.view.window().show_quick_panel(items=items,
-                                            selected_index=8,
+                                            selected_index=6,
                                             # on_select=lambda x: print("s:%i" % x), on_highlight=lambda x: print("h:%i" % x)
                                             on_select=self.on_done
                                             )
@@ -372,26 +372,24 @@ class FixWrongEncodingCommand(StringEncode):
         # self.view.show_popup(result)
         def_enc = 'iso-8859-7'
         if result == 0:
-            def_enc = 'iso-8859-7'
-        if result == 2:
             def_enc = 'iso-8859-1'
-        if result == 3:
+        if result == 1:
             def_enc = 'iso-8859-2'
-        if result == 4:
+        if result == 2:
             def_enc = 'iso-8859-3'
-        if result == 5:
+        if result == 3:
             def_enc = 'iso-8859-4'
-        if result == 6:
+        if result == 4:
             def_enc = 'iso-8859-5'
-        if result == 7:
+        if result == 5:
             def_enc = 'iso-8859-6'
-        if result == 8:
+        if result == 6:
             def_enc = 'iso-8859-7'
-        if result == 9:
+        if result == 7:
             def_enc = 'iso-8859-8'
-        if result == 10:
+        if result == 8:
             def_enc = 'iso-8859-9'
-        if result == 11:
+        if result == 9:
             def_enc = 'iso-8859-10'
         ret = ''
         print("Selected value:" + str(result))
