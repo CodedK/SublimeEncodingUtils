@@ -91,11 +91,11 @@ Using Package Control, press <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd>, type
 `xml_entitize` : Converts characters to their XML entity
 
 
-# Fix wrong encoded Greek characters
-Using command `fix_wrong_encoding` you can fix wrongly encoded Greek characters<br>
-You can correct the character encoding of a file that should be `iso-8859-7`: <br>
-From this ***ÄïêéìÞ ÅëëçíéêÜ*** <kbd> to this ↷</kbd> ***Δοκιμή Ελληνικά***<br>
-![Select encoding - menu](https://github.com/CodedK/SublimeEncodingUtils/blob/master/assets/sublime_menu.png)
+# Fix wrong encoded text
+Using command `fix_wrong_encoding` you can fix wrongly encoded characters<br>
+You can select the correct character encoding of a file (e.g `iso-8859-7`): <br>
+From this ***ÄïêéìÞ ÅëëçíéêÜ*** <kbd> to this ↷</kbd> ***Δοκιμή Ελληνικά***<br><br>
+![Select encoding - menu](https://github.com/CodedK/SublimeEncodingUtils/blob/master/assets/sublime_menu.png)<br>
 
 # Usage
 Access commands via:
