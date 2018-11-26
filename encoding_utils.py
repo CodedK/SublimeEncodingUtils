@@ -395,26 +395,17 @@ class FixWrongEncodingCommand(StringEncode):
             def_enc = 'iso-8859-10'
         ret = ''
         print("Selected value:" + str(result))
-        self.view.show_popup('Hello, <b>World!</b><br><a href="#">Click Me</a>', on_navigate=print)
         try:
             if result != -1:
                 for c in my_text[:]:
                     ret += c.encode('iso-8859-1').decode(def_enc)
                 self.view.run_command('insert_snippet', {'contents': ret})  # DOULEYEI
                 # self.view.show_popup('Hello, <b>World!</b><br><a href="moo">Click Me</a>', on_navigate=print)
-        except UnicodeEncodeError as e:
-            pass
-
-        # return ret
-
-
-
-
+        except Exception as e:
+            self.view.show_popup('Wrong encoding selected, <b>(' + def_enc + ')</b>!<br><br>Error: ' + str(e), on_navigate=print)
 
     # def on_done(self, password):
-
     #     # self.view.run_command("encode", {"password": password})
-
 
     #     # def encode(self, text):
     #     #     ret = ''
@@ -423,7 +414,6 @@ class FixWrongEncodingCommand(StringEncode):
     #     #     return ret
     #     #     # 'something' is the default message
     #     #     # self.view.window().show_input_panel("Please select the correct encoding:", 'iso-8859-7', self.on_done(text, text), None, None)
-
 
 
 class HtmlEntitizeCommand(StringEncode):
