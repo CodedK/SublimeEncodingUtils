@@ -402,7 +402,7 @@ class FixWrongEncodingCommand(StringEncode):
                 self.view.run_command('insert_snippet', {'contents': ret})  # DOULEYEI
                 # self.view.show_popup('Hello, <b>World!</b><br><a href="moo">Click Me</a>', on_navigate=print)
         except Exception as e:
-            self.view.show_popup('Wrong encoding selected, <b>(' + def_enc + ')</b>!<br><br>Error: ' + str(e), on_navigate=print)
+            self.view.show_popup('<b>' + def_enc + '</b> is not the correct encoding for this text!<br><br><b>Error:</b> <br><i>' + str(e) + '</i>', on_navigate=print)
 
     # def on_done(self, password):
     #     # self.view.run_command("encode", {"password": password})
