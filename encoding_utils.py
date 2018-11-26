@@ -334,12 +334,14 @@ class FixWrongEncodingCommand(StringEncode):
             # self.view.run_command('insert_snippet', {'contents': my_text})  # DOULEYEI
             # self.view.show_popup(text, max_width=200, on_hide=self.done)
 
-        # Enas tropos epilogis olokliris tis grammis
+        # #### Enas tropos epilogis olokliris tis grammis
         # currentposition = self.view.sel()[0].begin()
         # currentline = self.view.full_line(currentposition)
         # my_sel = self.view.substr(currentline)
         # self.view.show_popup('The Text other line:' + my_sel, max_width=200, on_hide=self.done)
 
+        # window = sublime.active_window()
+        # window.run_command('hide_panel')
 
         self.check_first()
         # print('User sent:', ret)
@@ -352,11 +354,15 @@ class FixWrongEncodingCommand(StringEncode):
 
     def check_first(self):
         # ÄïêéìÞ ÅëëçíéêÜ
-        # window = sublime.active_window()
-        # window.run_command('hide_panel')
+
         # window.show_input_panel('Search For 2:', '', self.on_done, None, None)
-        items = ['iso-8859-1', 'iso-8859-2', 'iso-8859-3', 'iso-8859-4', 'iso-8859-5', 'iso-8859-6', 'iso-8859-7', 'iso-8859-8', 'iso-8859-9', 'iso-8859-10']
-        self.view.show_popup_menu(items, self.on_done)
+        items = ['iso-8859-7', '-', 'iso-8859-1', 'iso-8859-2', 'iso-8859-3', 'iso-8859-4', 'iso-8859-5', 'iso-8859-6', 'iso-8859-7', 'iso-8859-8', 'iso-8859-9', 'iso-8859-10']
+        # self.view.show_popup_menu(items, self.on_done)
+        self.view.window().show_quick_panel(items=items,
+                                            selected_index=8,
+                                            # on_select=lambda x: print("s:%i" % x), on_highlight=lambda x: print("h:%i" % x)
+                                            on_select=self.on_done
+                                            )
         # self.view.show_popup('The Text other line', max_width=100, on_hide=self.on_done(edit))
 
     def on_done(self, result):
@@ -366,30 +372,39 @@ class FixWrongEncodingCommand(StringEncode):
         # self.view.show_popup(result)
         def_enc = 'iso-8859-7'
         if result == 0:
-            def_enc = 'iso-8859-1'
-        if result == 1:
-            def_enc = 'iso-8859-2'
-        if result == 2:
-            def_enc = 'iso-8859-3'
-        if result == 3:
-            def_enc = 'iso-8859-4'
-        if result == 4:
-            def_enc = 'iso-8859-5'
-        if result == 5:
-            def_enc = 'iso-8859-6'
-        if result == 6:
             def_enc = 'iso-8859-7'
+        if result == 2:
+            def_enc = 'iso-8859-1'
+        if result == 3:
+            def_enc = 'iso-8859-2'
+        if result == 4:
+            def_enc = 'iso-8859-3'
+        if result == 5:
+            def_enc = 'iso-8859-4'
+        if result == 6:
+            def_enc = 'iso-8859-5'
         if result == 7:
-            def_enc = 'iso-8859-8'
+            def_enc = 'iso-8859-6'
         if result == 8:
-            def_enc = 'iso-8859-9'
+            def_enc = 'iso-8859-7'
         if result == 9:
+            def_enc = 'iso-8859-8'
+        if result == 10:
+            def_enc = 'iso-8859-9'
+        if result == 11:
             def_enc = 'iso-8859-10'
         ret = ''
         print("Selected value:" + str(result))
-        for c in my_text[:]:
-            ret += c.encode('iso-8859-1').decode(def_enc)
-        self.view.run_command('insert_snippet', {'contents': ret})  # DOULEYEI
+        self.view.show_popup('Hello, <b>World!</b><br><a href="#">Click Me</a>', on_navigate=print)
+        try:
+            if result != -1:
+                for c in my_text[:]:
+                    ret += c.encode('iso-8859-1').decode(def_enc)
+                self.view.run_command('insert_snippet', {'contents': ret})  # DOULEYEI
+                # self.view.show_popup('Hello, <b>World!</b><br><a href="moo">Click Me</a>', on_navigate=print)
+        except UnicodeEncodeError as e:
+            pass
+
         # return ret
 
 
