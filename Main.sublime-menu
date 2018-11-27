@@ -13,9 +13,7 @@
                         "caption": "EncodingUtils: Paste Encoded...",
                         "command": "string_encode_paste"
                     },
-                    {
-                        "caption": "-"
-                    },
+                    {"caption": "-"},
                     {
                         "caption": "Shannon Entropy",
                         "command": "shannon"
@@ -24,9 +22,7 @@
                         "caption": "Unix timestamp to datetime",
                         "command": "unixstamp"
                     },
-                    {
-                        "caption": "-"
-                    },
+                    {"caption": "-"},
                     {
                         "caption": "NCR Encode",
                         "command": "panos_ncr"
@@ -35,13 +31,12 @@
                         "caption": "NCR Decode",
                         "command": "dencr"
                     },
+                    {"caption": "-"},
                     {
                         "caption": "Fix Wrong Greek Encoding",
                         "command": "fix_wrong_encoding"
                     },
-                    {
-                        "caption": "-"
-                    },
+                    {"caption": "-"},
                     {
                         "caption": "HTML Entitize",
                         "command": "html_entitize"
@@ -70,9 +65,7 @@
                         "caption": "Safe HTML Deentitize",
                         "command": "safe_html_deentitize"
                     },
-                    {
-                        "caption": "-"
-                    },
+                    {"caption": "-"},
                     {
                         "caption": "URL Encode",
                         "command": "url_encode"
@@ -101,9 +94,7 @@
                         "caption": "Sha512",
                         "command": "sha512_encode"
                     },
-                    {
-                        "caption": "-"
-                    },
+                    {"caption": "-"},
                     {
                         "caption": "JSON Escape",
                         "command": "json_escape"
@@ -120,9 +111,7 @@
                         "caption": "Escape LIKE",
                         "command": "escape_like"
                     },
-                    {
-                        "caption": "-"
-                    },
+                    {"caption": "-"},
                     {
                         "caption": "Decimal to Hexadecimal",
                         "command": "dec_hex"
