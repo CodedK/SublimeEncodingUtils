@@ -7,6 +7,7 @@ import math
 import re
 import string
 import sys
+import uuid
 
 import sublime
 
@@ -285,6 +286,13 @@ class PanosNcrCommand(StringEncode):
                 ret += '&#' + str(ord(c)) + ';'
             else:
                 ret += c
+        return ret
+
+
+class GenerateUuidCommand(StringEncode):
+    def run(self, text):
+        ret = str(uuid.uuid4())
+        self.view.run_command('insert_snippet', {'contents': ret})  # DOULEYEI
         return ret
 
 
