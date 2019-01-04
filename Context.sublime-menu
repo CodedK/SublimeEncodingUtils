@@ -26,6 +26,10 @@
                 "command": "unixstamp"
             },
             {
+                "caption": "Generate RFC compliant UUID",
+                "command": "generate_uuid"
+            },
+            {
                 "caption": "-"
             },
             {
