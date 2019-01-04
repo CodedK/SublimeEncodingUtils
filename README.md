@@ -44,6 +44,8 @@ Using Package Control, press <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd>, type
 
 `fix_wrong_encoding` : Fixes wrongly encoded Greek characters
 
+`generate_uuid` : Generate RFC compliant UUID
+
 `hex_dec` : Converts hexademical to decimal
 
 `hex_unicode` : Converts HEX representation to the respective unicode character
