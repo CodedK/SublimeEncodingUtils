@@ -1,0 +1,2 @@
+minor fixes
+added current timestamp if selection is empty
