@@ -22,6 +22,10 @@
                         "caption": "Unix timestamp to datetime",
                         "command": "unixstamp"
                     },
+                    {
+                        "caption": "Insert current date",
+                        "command": "ins_cur_date"
+                    },
                     {"caption": "-"},
                     {
                         "caption": "NCR Encode",
@@ -127,7 +131,14 @@
                     {
                         "caption": "Hexadecimal to Unicode",
                         "command": "hex_unicode"
-                    }
+                    },
+                    {
+                        "caption": "Quick Start Guide",
+                        "command": "enc_doc",
+                        "args": {
+                            "page": "${packages}/SublimeEncodingUtils/quickstart.md"
+                        }
+                    },
                 ]
             }
         ]
