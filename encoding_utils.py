@@ -8,11 +8,12 @@ import re
 import string
 import sys
 import uuid
+import webbrowser
+import datetime
 
 import sublime
 
 import sublime_plugin
-
 
 try:
     from .encodingutils.escape_table import (
@@ -50,6 +51,33 @@ except NameError:
         return chr(val)
 
 
+CSS = '''
+div.sub-enc_utils { padding: 10px; margin: 0; }
+.sub-enc_utils h1, .sub-enc_utils h2, .sub-enc_utils h3,
+.sub-enc_utils h4, .sub-enc_utils h5, .sub-enc_utils h6 {
+    {{'.string'|css}}
+}
+.sub-enc_utils blockquote { {{'.comment'|css}} }
+.sub-enc_utils a { text-decoration: none; }
+'''
+
+frontmatter = {
+    "markdown_extensions": [
+        "markdown.extensions.admonition",
+        "markdown.extensions.attr_list",
+        "markdown.extensions.def_list",
+        "markdown.extensions.nl2br",
+        # Smart quotes always have corner cases that annoy me, so don't bother with them.
+        {"markdown.extensions.smarty": {"smart_quotes": False}},
+        "pymdownx.extrarawhtml",
+        "pymdownx.keys",
+        {"pymdownx.escapeall": {"hardbreak": True, "nbsp": True}},
+        # Sublime doesn't support superscript, so no ordinal numbers
+        {"pymdownx.smartsymbols": {"ordinal_numbers": False}}
+    ]
+}
+
+
 class StringEncodePaste(sublime_plugin.WindowCommand):
     def run(self, **kwargs):
         items = [
@@ -66,6 +94,7 @@ class StringEncodePaste(sublime_plugin.WindowCommand):
             ('Hex Unicode', 'hex_unicode'),
             ('Html Deentitize', 'html_deentitize'),
             ('Html Entitize', 'html_entitize'),
+            ('Insert current date', 'ins_cur_date'),
             ('Json Escape', 'json_escape'),
             ('Json Unescape', 'json_unescape'),
             ('Md5 Encode', 'md5_encode'),
@@ -100,6 +129,57 @@ class StringEncodePaste(sublime_plugin.WindowCommand):
         self.window.show_quick_panel(lines, on_done)
 
 
+class EncDocCommand(sublime_plugin.WindowCommand):
+    """Open doc page."""
+
+    re_pkgs = re.compile(r'^Packages')
+
+    def on_navigate(self, href):
+        """Handle links."""
+
+        if href.startswith('sub://Packages'):
+            sublime.run_command('open_file', {"file": self.re_pkgs.sub('${packages}', href[6:])})
+        else:
+            webbrowser.open_new_tab(href)
+
+    def run(self, page):
+        """Open page."""
+
+        try:
+            # import mdpopups
+            # import pymdownx
+            has_phantom_support = (mdpopups.version() >= (1, 10, 0)) and (int(sublime.version()) >= 3124)
+            fmatter = mdpopups.format_frontmatter(frontmatter) if pymdownx.version_info[:3] >= (4, 3, 0) else ''
+        except Exception:
+            fmatter = ''
+            has_phantom_support = False
+
+        if not has_phantom_support:
+            sublime.run_command('open_file', {"file": page})
+        else:
+            text = sublime.load_resource(page.replace('${packages}', 'Packages'))
+            view = self.window.new_file()
+            view.set_name('Sublime Encoding Utils - Quick Start')
+            view.settings().set('gutter', False)
+            view.settings().set('word_wrap', False)
+            if has_phantom_support:
+                mdpopups.add_phantom(
+                    view,
+                    'quickstart',
+                    sublime.Region(0),
+                    fmatter + text,
+                    sublime.LAYOUT_INLINE,
+                    css=CSS,
+                    wrapper_class="sub-notify",
+                    on_navigate=self.on_navigate
+                )
+            else:
+                view.run_command('insert', {"characters": text})
+            view.set_read_only(True)
+            view.set_scratch(True)
+
+
+
 class StringEncode(sublime_plugin.TextCommand):
     def run(self, edit, **kwargs):
         regions = self.view.sel()
@@ -129,20 +209,72 @@ class StringEncode(sublime_plugin.TextCommand):
 
 class UnixstampCommand(StringEncode):
     def encode(self, text):
-        import datetime
-        ret = ''
+        ret = text
+        msel = self.view.sel()
+        # tt = str(msel[0])
+        # (begin_sel, end_sel) = list(tt)
+        # return tt
+
         try:
-            if len(text) > 10:
-                ret = datetime.datetime.fromtimestamp(float(text)).strftime('%d-%m-%Y %H:%M:%S:%f')
-            else:
-                ret = datetime.datetime.fromtimestamp(int(text)).strftime('%d-%m-%Y %H:%M:%S')
-        except:
-            try:
+            if "-" in text and len(text) == 19:
+                # probably a date
                 ret = datetime.datetime.strptime(str(text), "%d-%m-%Y %H:%M:%S")
                 ret = str(int(ret.timestamp()))
-            except:
+            if len(text) > 10 and len(text) < 15 and '-' not in text and '.' in text:
+                # got float unixtime stamp
+                ret = datetime.datetime.fromtimestamp(float(text)).strftime('%d-%m-%Y %H:%M:%S:%f')
+            if len(text) == 10 and '-' not in text:
+                # got integer timestamp
+                ret = datetime.datetime.fromtimestamp(int(text)).strftime('%d-%m-%Y %H:%M:%S')
+            if not msel[0]:
+                import time
+                ret = time.time()
+                ret = str(int(ret))
+                # Get position
+                currentposition = int(self.view.sel()[0].begin())
+                self.view.run_command('insert_snippet', {'contents': ret})
+                self.view.sel().clear()
+                self.view.sel().add(sublime.Region(currentposition, currentposition + 10))
+                # self.view.run_command("expand_selection_to_paragraph")
+                # self.view.run_command("move", {"by": "stops", "extend": False, "forward": False, "word_begin": True, "punct_begin": True, "separators": ""})
+                return
+        except Exception:
+            try:
+                # assume its a date
+                ret = datetime.datetime.strptime(str(text), "%d-%m-%Y %H:%M:%S")
+                ret = str(int(ret.timestamp()))
+                return 'Got exception'
+                # return 'Got exception'
+            except Exception:
                 ret = text
+                return Exception
         return ret
+        # what = self.view.sel()
+        # zzz = str(len(what[0]))
+        # return zzz
+
+    # def getSelection(self):
+    #     text = []
+    #     if View().sel():
+    #         for region in View().sel():
+    #             if region.empty():
+    #                 text.append(View().substr(View().line(region)))
+    #             else:
+    #                 text.append(View().substr(region))
+    #     return text
+
+
+
+class InsCurDateCommand(StringEncode):
+
+    def run(self, page):
+        self.in_dt()
+
+    def in_dt(self):
+        import time
+        ret = time.time()
+        ret = str(int(ret))
+        self.view.run_command('insert_snippet', {'contents': ret})
 
 
 class EntropyCommand(StringEncode):
@@ -293,6 +425,7 @@ class GenerateUuidCommand(StringEncode):
     def run(self, text):
         ret = str(uuid.uuid4())
         self.view.run_command('insert_snippet', {'contents': ret})  # DOULEYEI
+        # sublime.active_window().run_command("terminal_notifier", {"title": "Something happened", "subtitle": "Over there", "message": "This is a nice notification."})
         return ret
 
 
@@ -358,7 +491,6 @@ class FixWrongEncodingCommand(StringEncode):
 
     def done(self):
         print("finished")
-
 
     def check_first(self):
         # ÄïêéìÞ ÅëëçíéêÜ
@@ -763,3 +895,4 @@ class HexUnicodeCommand(StringEncode):
             rr = r.search(uni_text)
 
         return uni_text
+
