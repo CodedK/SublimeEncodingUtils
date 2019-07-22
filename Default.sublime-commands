@@ -20,6 +20,10 @@
         "command": "unixstamp"
     },
     {
+        "caption": "Insert current date",
+        "command": "ins_cur_date"
+    },
+    {
         "caption": "EncodingUtils: HTML Entitize",
         "command": "html_entitize"
     },
