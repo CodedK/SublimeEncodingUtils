@@ -147,6 +147,16 @@
             {
                 "caption": "Hexadecimal to Unicode",
                 "command": "hex_unicode"
+            },
+            {
+                "caption": "-"
+            },
+            {
+                "caption": "Quick Start Guide",
+                "command": "enc_doc",
+                "args": {
+                    "page": "${packages}/SublimeEncodingUtils/quickstart.md"
+                }
             }
         ]
 }]
