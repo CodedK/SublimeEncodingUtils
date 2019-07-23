@@ -1,0 +1,4 @@
+Added "insert current unix timestamp" when "Unix timestamp to date" is called and no text is selected.
+minor fixes
+----
+23-07-2019 06:22:05
