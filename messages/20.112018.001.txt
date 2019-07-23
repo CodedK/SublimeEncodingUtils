@@ -1,3 +1,0 @@
-Added ability to recode wrongly encoded Greek characters.
-Gibberish chars are encoded back to normal Greek.
-minor fixes
