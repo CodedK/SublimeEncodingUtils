@@ -1,1 +1,1 @@
-{ "version": "2019.07.18.09.14.19", "platforms": [ "*" ], "url": "https://github.com/CodedK/SublimeEncodingUtils", "sublime_text": "*", "dependencies": [], "description": "Converts selected characters from one \"encoding\" to another, by CodedK" }
+{"description": "Converts selected characters from one \"encoding\" to another, by CodedK", "dependencies": [], "sublime_text": "*", "url": "https://github.com/CodedK/SublimeEncodingUtils", "platforms": ["*"], "version": "1.1.6"}
