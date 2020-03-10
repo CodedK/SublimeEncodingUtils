@@ -496,7 +496,7 @@ class FixWrongEncodingCommand(StringEncode):
         # ÄïêéìÞ ÅëëçíéêÜ
 
         # window.show_input_panel('Search For 2:', '', self.on_done, None, None)
-        items = ['iso-8859-1', 'iso-8859-2', 'iso-8859-3', 'iso-8859-4', 'iso-8859-5', 'iso-8859-6', 'iso-8859-7', 'iso-8859-8', 'iso-8859-9', 'iso-8859-10']
+        items = ['Latin to iso-8859-2', 'Latin to iso-8859-3', 'Latin to iso-8859-4', 'Latin to iso-8859-5', 'Latin to iso-8859-6', 'Latin to Greek', 'Extended Latin to Greek', 'Latin to iso-8859-8', 'Latin to iso-8859-9', 'default ascii to iso-8859-7']
         # self.view.show_popup_menu(items, self.on_done)
         self.view.window().show_quick_panel(items=items,
                                             selected_index=6,
@@ -511,33 +511,41 @@ class FixWrongEncodingCommand(StringEncode):
         # mytext = self.view.substr(regions)
         # self.view.show_popup(result)
         def_enc = 'iso-8859-7'
+        from_enc = 'iso-8859-1'  # subset
         if result == 0:
-            def_enc = 'iso-8859-1'
-        if result == 1:
             def_enc = 'iso-8859-2'
-        if result == 2:
+        if result == 1:
             def_enc = 'iso-8859-3'
-        if result == 3:
+        if result == 2:
             def_enc = 'iso-8859-4'
-        if result == 4:
+        if result == 3:
             def_enc = 'iso-8859-5'
-        if result == 5:
+        if result == 4:
             def_enc = 'iso-8859-6'
-        if result == 6:
+        if result == 5:
+            from_enc = 'iso-8859-1'  # subset
             def_enc = 'iso-8859-7'
+        if result == 6:
+            from_enc = 'cp1252'  # superset
+            def_enc = 'utf-8'
         if result == 7:
             def_enc = 'iso-8859-8'
         if result == 8:
             def_enc = 'iso-8859-9'
-        if result == 9:
-            def_enc = 'iso-8859-10'
         ret = ''
+        # data = []
         print("Selected value:" + str(result))
+        # import time
         try:
             if result != -1:
-                for c in my_text[:]:
-                    ret += c.encode('iso-8859-1').decode(def_enc)
-                self.view.run_command('insert_snippet', {'contents': ret})  # DOULEYEI
+                if result == 6:
+                    # ret = bytes(my_text, from_enc).decode('utf-8')
+                    ret = my_text.encode("cp1252").decode("utf-8")
+                    self.view.run_command('insert_snippet', {'contents': ret})
+                else:
+                    for c in my_text[:]:
+                        ret += c.encode(from_enc).decode(def_enc)
+                    self.view.run_command('insert_snippet', {'contents': ret})  # DOULEYEI
                 # self.view.show_popup('Hello, <b>World!</b><br><a href="moo">Click Me</a>', on_navigate=print)
         except Exception as e:
             self.view.show_popup('<b>' + def_enc + '</b> is not the correct encoding for this text!<br><br><b>Error:</b> <br><i>' + str(e) + '</i>', on_navigate=print)
@@ -895,4 +903,3 @@ class HexUnicodeCommand(StringEncode):
             rr = r.search(uni_text)
 
         return uni_text
-
