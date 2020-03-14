@@ -461,11 +461,6 @@ class PanosHcrCommand(StringEncode):
 
 
 class FixWrongEncodingCommand(StringEncode):
-    # def run(self, view):
-    #     self.view = view
-    #     # Prompt user for password
-    #     message = "Create a Password:"
-    #     view.window().show_input_panel(message, "", self.on_done, None, None)
     def run(self, text):
         global my_text
 
@@ -496,7 +491,7 @@ class FixWrongEncodingCommand(StringEncode):
         # ÄïêéìÞ ÅëëçíéêÜ
 
         # window.show_input_panel('Search For 2:', '', self.on_done, None, None)
-        items = ['Latin to iso-8859-2', 'Latin to iso-8859-3', 'Latin to iso-8859-4', 'Latin to iso-8859-5', 'Latin to iso-8859-6', 'Latin to Greek', 'Extended Latin to Greek', 'Latin to iso-8859-8', 'Latin to iso-8859-9', 'default ascii to iso-8859-7']
+        items = ['Latin to iso-8859-2', 'Latin to iso-8859-3', 'Latin to iso-8859-4', 'Latin to iso-8859-5', 'Latin to iso-8859-6', 'Latin to Greek', 'Extended Latin to Greek', 'Latin to iso-8859-8', 'Latin to iso-8859-9', 'Unicode points to UTF8']
         # self.view.show_popup_menu(items, self.on_done)
         self.view.window().show_quick_panel(items=items,
                                             selected_index=6,
@@ -506,10 +501,6 @@ class FixWrongEncodingCommand(StringEncode):
         # self.view.show_popup('The Text other line', max_width=100, on_hide=self.on_done(edit))
 
     def on_done(self, result):
-        # print(self.window.active_view().sel())
-        # regions = self.view.sel()
-        # mytext = self.view.substr(regions)
-        # self.view.show_popup(result)
         def_enc = 'iso-8859-7'
         from_enc = 'iso-8859-1'  # subset
         if result == 0:
@@ -526,21 +517,24 @@ class FixWrongEncodingCommand(StringEncode):
             from_enc = 'iso-8859-1'  # subset
             def_enc = 'iso-8859-7'
         if result == 6:
+            # from_enc = 'cp850'  # superset
             from_enc = 'cp1252'  # superset
             def_enc = 'utf-8'
         if result == 7:
             def_enc = 'iso-8859-8'
         if result == 8:
             def_enc = 'iso-8859-9'
+        if result == 9:
+            from_enc = 'utf-8'
+            def_enc = 'unicode-escape'
         ret = ''
-        # data = []
         print("Selected value:" + str(result))
         # import time
         try:
             if result != -1:
-                if result == 6:
+                if result in [6, 9]:
                     # ret = bytes(my_text, from_enc).decode('utf-8')
-                    ret = my_text.encode("cp1252").decode("utf-8")
+                    ret = my_text.encode(from_enc).decode(def_enc)
                     self.view.run_command('insert_snippet', {'contents': ret})
                 else:
                     for c in my_text[:]:
@@ -549,17 +543,6 @@ class FixWrongEncodingCommand(StringEncode):
                 # self.view.show_popup('Hello, <b>World!</b><br><a href="moo">Click Me</a>', on_navigate=print)
         except Exception as e:
             self.view.show_popup('<b>' + def_enc + '</b> is not the correct encoding for this text!<br><br><b>Error:</b> <br><i>' + str(e) + '</i>', on_navigate=print)
-
-    # def on_done(self, password):
-    #     # self.view.run_command("encode", {"password": password})
-
-    #     # def encode(self, text):
-    #     #     ret = ''
-    #     #     for c in text[:]:
-    #     #         ret += c.encode('iso-8859-1').decode('iso-8859-7')
-    #     #     return ret
-    #     #     # 'something' is the default message
-    #     #     # self.view.window().show_input_panel("Please select the correct encoding:", 'iso-8859-7', self.on_done(text, text), None, None)
 
 
 class HtmlEntitizeCommand(StringEncode):
