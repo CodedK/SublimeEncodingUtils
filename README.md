@@ -42,7 +42,7 @@ Using Package Control, press <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd>, type
 
 `escape_regex` : Escapes regex meta-characters
 
-`fix_wrong_encoding` : Fixes wrongly encoded Greek characters
+`fix_wrong_encoding` : Fixes wrongly encoded characters
 
 `generate_uuid` : Generate RFC compliant UUID
 
