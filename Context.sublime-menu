@@ -41,7 +41,7 @@
                 "command": "dencr"
             },
             {
-                "caption": "Fix Wrong Greek Encoding",
+                "caption": "Fix Wrong Encoding",
                 "command": "fix_wrong_encoding"
             },
             {

@@ -25,6 +25,11 @@ Added "Greek fix for miscoded string with Latin superset".
 minor fixes
 "10-03-2020 15:00:56"
 
+# EncodingUtils 1.2.4
+Added "Unicode point conversion".
+minor fixes
+"14-03-2020 22:06:02"
+
 
 
 
