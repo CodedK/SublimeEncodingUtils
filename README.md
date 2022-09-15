@@ -1,5 +1,7 @@
 # SublimeEncodingUtils `Sublime Text 3 Package`
-A useful multitool for programmers.<br>
+
+
+A handy multi-tool for programmers.<br>
 The general idea is to convert selected characters from any of the categories below to another category.
 
 - Calculate ***CIPHER***: `ROT13`
